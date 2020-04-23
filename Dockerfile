@@ -41,7 +41,6 @@ RUN apt-get install libmysqlclient-dev postgresql-server-dev-all -y
 #RUN . myenv/bin/activate &&
 RUN pip3 install -U setuptools
 RUN pip3 install pyspark==2.4.0
-RUN pip3 install pyenchant && pip3 install sklearn2pmml && pip3 install -r requirements.txt
 
 #copy api code
 ADD code.tgz /home/mAdvisor
