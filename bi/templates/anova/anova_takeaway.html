@@ -1,0 +1,27 @@
+{% if n_d == 1 %}
+  {% if n_s_d == 0 %}
+    There are no dimensions that have a significant influence on {{cm}}.
+  {% elif n_s_d == 1 %}
+    There is only one dimension({{dims[0]}}) that has a significant influence on {{cm}}.
+  {% endif %}
+{% elif n_d == 2 %}
+  {% if n_s_d == 0 %}
+    There are no dimensions that have a significant influence on {{cm}}.
+  {% elif n_s_d == 1 %}
+    There is only one dimension({{dims[0]}}) that has a significant influence on {{cm}}.
+  {% elif n_s_d == 2 %}
+    There are two dimensions ({{dims[0]}} and dims{{1}}) that have a significant influence on the {{cm}}.
+  {% endif %}
+{% else %}
+  {% if n_s_d == 0 %}
+    There are no dimensions that have a significant influence on {{cm}}.
+  {% elif n_s_d == 1 %}
+    There is only one dimension({{dims[0]}}) that has a significant influence on {{cm}}.
+  {% elif n_s_d == 2 %}
+    There are two dimensions ({{dims[0]}} and {{dims[1]}}) that have a significant influence on the {{cm}}.
+  {% elif n_s_d == 3 %}
+    There are three dimensions ({{dims[0]}}, {{dims[1]}} and {{dims[2]}}) that have a significant influence on the {{cm}}.
+  {% elif n_s_d > 3 %}
+    There are {{n_s_d}} dimensions that have a significant influence on the {{cm}}. And the most important ones are {{dims[0]}}, {{dims[1]}} and {{dims[2]}}.
+  {% endif %}
+{% endif %}

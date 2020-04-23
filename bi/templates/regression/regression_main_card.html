@@ -1,0 +1,45 @@
+<p class="txt-justify">
+{% if n_s_m > 3 %}
+  There are <b>{{n_m}} measures</b> in the dataset and <b>{{n_s_m}} of them</b> (including {{sm[0]}},
+  {{sm[1]}},{{sm[2]}}, etc.) have <b>significant influence</b> on {{cm}}.
+{% elif n_s_m == 3 %}
+  There are <b>{{n_m}} measures</b> in the dataset and <b>three of them</b> ({{sm[0]}},
+  {{sm[1]}} and {{sm[2]}}) have <b>significant influence</b> on {{cm}}.
+{% elif n_s_m == 2 %}
+  There are <b>{{n_m}} measures</b> in the dataset and <b>two of them</b> ({{sm[0]}} and
+  {{sm[1]}}) have <b>significant influence</b> on {{cm}}.
+{% elif n_s_m == 1 %}
+  {% if n_m > 1 %}
+    There are <b>{{n_m}} measures</b> in the dataset and <b> only {{sm[0]}}</b> has <b>significant
+    influence</b> on {{cm}}.
+  {% else %}
+    There is <b>only one measure</b> in the dataset ({{sm[0]}}) and it has <b>significant influence</b>
+  on {{cm}}.
+  {% endif %}
+{% endif %}
+
+{% if n_s_m > 1 %}
+  It implies that these measures explain considerable amount of variation in {{cm}} figures.
+{% elif n_s_m == 1 %}
+  It implies that this measure explain considerable amount of variation in {{cm}} figures.
+{% endif %}
+
+{% if n_ns_m == 1 %}
+  However {{nsm[0]}} don’t show significant difference in {{cm}} values across categories.
+{% elif n_ns_m == 2 %}
+  However, other two Measures ({{nsm[0]}} and {{nsm[1]}}), don’t show significant difference
+  in {{cm}} values across categories.
+{% elif n_ns_m > 2 %}
+  However, other Measures, such as {{nsm[0]}}, {{nsm[1]}}, etc., don’t show significant difference
+  in {{cm}} values across categories.
+{% endif %}
+
+{% if n_s_m == 1 %}
+  The chart below displays the <b>impact of {{sm[0]}}</b> on {{cm}}, as measured by effect size.
+  Let us take a deeper look at {{sm[0]}} that explain remarkable amount of change in {{cm}}.
+{% elif n_s_m > 1 %}
+  The chart below displays the <b>impact of key Measures</b> on {{cm}}, as measured by effect size.
+  Let us take a deeper look at some of the most important Measures that explain remarkable amount
+  of change in {{cm}}.
+{% endif %}
+</p>

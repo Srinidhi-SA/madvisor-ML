@@ -1,0 +1,98 @@
+<h4>{{dim1["dimension"]}}</h4>
+
+{{blockSplitter}}
+<p class="txt-justify">
+{% if dim1["num_levels"] == 2 %}
+There are two categories within {{dim1["dimension"]}} ({{dim1["levels"][0]}} and {{dim1["levels"][1]}}).
+{% elif dim1["num_levels"] == 3 %}
+There are three categories within {{dim1["dimension"]}} ({{dim1["levels"][0]}}, {{dim1["levels"][1]}} and {{dim1["levels"][2]}}).
+{% elif dim1["num_levels"] > 3 %}
+There are {{dim1["num_levels"]}} categories within {{dim1["dimension"]}} (including {{dim1["levels"][0]}}, {{dim1["levels"][1]}} and {{dim1["levels"][2]}}).
+{% endif %}
+
+The following table displays how average {{target}} vary across {{dim1["dimension"]}}
+and segments of {{measure}}.
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+{{dim1["dimension"]}} has significant influence on {{target}} and the impact of {{measure}}
+on {{target}} shows interesting variations across {{dim1["dimension"]}}.
+
+{% if dim1["highest_impact_level"][0]==dim1["highest_average"] %}
+  When {{dim1["dimension"]}} is {{dim1["highest_average"]}} average {{target}} is the highest
+  as well as the impact of  {{measure}} on {{target}},as {{target}}
+  {% if dim1["highest_impact_level"][1]>0 %}
+  increases
+  {% else %}
+  decreases
+  {% endif %}
+  by {{dim1["highest_impact_level"][1]|round(2)|intcomma}} units for every unit increase in {{measure}}.
+{% else %}
+  Even though the average {{target}} from {{dim1["highest_average"]}} is higher, {{measure}}
+  has the highest impact on {{dim1["highest_impact_level"][0]}} {{dim1["dimension"]}}, as {{target}}
+  {% if dim1["highest_impact_level"][1]>0 %}
+  increases
+  {% else %}
+  decreases
+  {% endif %}
+  by {{dim1["highest_impact_level"][1]|round(2)|intcomma}} units for every unit increase in {{measure}}.
+{% endif %}
+
+On the other hand, {{dim1["lowest_impact_level"][0]}} {{dim1["dimension"]}} is the least affected, as it
+{% if dim1["lowest_impact_level"]>0 %}
+increases
+{% else %}
+decreases
+{% endif %}
+{{target}} by  {{dim1["lowest_impact_level"][1] | round(2) | intcomma}} units for one unit increase in {{measure}}.
+</p>
+{{blockSplitter}}
+{% if dim2["num_levels"]>0 %}
+<h4>{{dim2["dimension"]}}</h4>
+
+{{blockSplitter}}
+<p class="txt-justify">
+{% if dim2["num_levels"] == 2 %}
+There are two categories within {{dim2["dimension"]}} ({{dim2["levels"][0]}} and {{dim2["levels"][1]}}).
+{% elif dim2["num_levels"] == 3 %}
+There are three categories within {{dim2["dimension"]}} ({{dim2["levels"][0]}}, {{dim2["levels"][1]}} and {{dim2["levels"][2]}}).
+{% elif dim2["num_levels"] > 3 %}
+There are {{dim2["num_levels"]}} categories within {{dim2["dimension"]}} (including {{dim2["levels"][0]}}, {{dim2["levels"][1]}} and {{dim2["levels"][2]}}).
+{% endif %}
+
+The following table displays how average {{target}} vary across {{dim2["dimension"]}}
+and segments of {{measure}}.
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+The relationship between {{measure}} and {{target}} is also significantly influenced by {{dim2["dimension"]}}.
+For instance, {{dim2["dimension"]}}, {{dim2["highest_average"]}} seems to have the average {{target}}
+that is higher than the other categories.
+
+{% if dim2["highest_impact_level"][0]==dim2["highest_average"] %}
+  The {{target}} also seems to be highly influenced at this {{dim2["highest_impact_level"][0]}} as it moves
+  {% if dim2["highest_impact_level"][1]>0 %}
+    up
+  {% else %}
+    down
+  {% endif %}
+    by {{dim2["highest_impact_level"][1]}} units for every unit increase in {{measure}}.
+{% else %}
+  But, the {{dim2["highest_impact_level"][0]}} has the highest influence over {{target}} as it
+  {% if dim2["highest_impact_level"][1]>0 %}
+    increases
+  {% else %}
+    decreases
+  {% endif %}
+  by {{dim2["highest_impact_level"][1]|round(2)|intcomma}} for every unit increase in {{measure}}.
+{% endif %}
+
+However, {{dim2["lowest_impact_level"][0]}} {{dim2["dimension"]}} is the least affected, as it
+{% if dim2["lowest_impact_level"][1]>0 %}
+  increases
+{% else %}
+  decreases
+{% endif %}
+{{target}} by  {{dim2["lowest_impact_level"][1] | round(2) | intcomma}} units for one unit increase in {{measure}}.
+{% endif %}
+</p>

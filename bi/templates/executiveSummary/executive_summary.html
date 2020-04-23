@@ -1,0 +1,245 @@
+{% if trend_present == False %}
+  {% if skew > 0.05 %}
+    {{measure}} has a positively skewed distribution as the top 25% observations
+     account for about 57% of the total
+  {% elif skew < -0.05 %}
+    {{measure}} has a positively skewed distribution as the top 25% observations
+     account for about 57% of the total
+  {% elif skew >=-0.05 and skew <= 0.05 %}
+    {{measure}} distribution is not skewed, which means that there are nearly
+    equal contributions from low-value as well as high-value observations.
+  {% endif %}
+
+  The values for {{measure}} range from a minimum of {{lowestValue}} and all the way up to a maximum of {{peakValue}}.
+  The total {{measure}} amount to {{total}} with the average {{measure}} per observation being {{average_value}}.
+
+  PARASEPARATOR
+{% endif %}
+
+{% if trend_present == True %}
+  {% if skew > 0.05 %}
+    {% if overall_growth > 50 %}
+      {{measure}} had a phenomenal growth during {{start_time}}-{{end_time}}, primarily driven huge number of low-value observations
+    {% elif overall_growth >5 and overall_growth <= 50 %}
+      {{measure}} had a growth during {{start_time}}-{{end_time}}, primarily driven huge number of low-value observations
+    {% elif overall_growth > -50 and overall_growth <= -5 %}
+      {{measure}} had a decline during {{start_time}}-{{end_time}}, primarily driven huge number of low-value observations
+    {% elif overall_growth < -50 %}
+      {{measure}} had a phenomenal decline during {{start_time}}-{{end_time}}, primarily driven huge number of low-value observations
+    {% elif overall_growth > -5 and overall_growth <= 5 %}
+      {{measure}} showed no overall growth during {{start_time}}-{{end_time}}, primarily driven huge number of low-value observations
+    {% endif %}
+  {% elif skew < -0.05 %}
+    {% if overall_growth > 50 %}
+      {{measure}} had a phenomenal growth during {{start_time}}-{{end_time}}, primarily driven huge number of high-value observations
+    {% elif overall_growth >5 and overall_growth <= 50 %}
+      {{measure}} had a growth during {{start_time}}-{{end_time}}, primarily driven huge number of high-value observations
+    {% elif overall_growth > -50 and overall_growth <= -5 %}
+      {{measure}} had a decline during {{start_time}}-{{end_time}}, primarily driven huge number of high-value observations
+    {% elif overall_growth < -50 %}
+      {{measure}} had a phenomenal decline during {{start_time}}-{{end_time}}, primarily driven huge number of high-value observations
+    {% elif overall_growth > -5 and overall_growth <= 5 %}
+      {{measure}} showed no overall growth during {{start_time}}-{{end_time}}, primarily driven huge number of high-value observations
+    {% endif %}
+  {% elif skew >=-0.05 and skew <= 0.05 %}
+    {% if overall_growth > 50 %}
+      {{measure}} had a phenomenal growth during {{start_time}}-{{end_time}}, with similar contribution from low and high value observations.
+    {% elif overall_growth >5 and overall_growth <= 50 %}
+      {{measure}} had a growth during {{start_time}}-{{end_time}}, with similar contribution from low and high value observations.
+    {% elif overall_growth > -50 and overall_growth <= -5 %}
+      {{measure}} had a decline during {{start_time}}-{{end_time}}, with similar contribution from low and high value observations.
+    {% elif overall_growth < -50 %}
+      {{measure}} had a phenomenal decline during {{start_time}}-{{end_time}}, with similar contribution from low and high value observations.
+    {% elif overall_growth > -5 and overall_growth <= 5 %}
+      {{measure}} showed no overall growth during {{start_time}}-{{end_time}}, with similar contribution from low and high value observations.
+    {% endif %}
+  {% endif %}
+
+  {% if overall_growth > 50 %}
+    {{measure}} witnessed strong growth ({{overall_growth|abs}}%) over the last {{durationString}} and the total {{measure}} amounts to {{total}} with an average of {{average_value}} per observation.
+  {% elif overall_growth >5 and overall_growth <= 50 %}
+    {{measure}} witnessed growth ({{overall_growth|abs}}%) over the last {{durationString}} and the total {{measure}} amounts to {{total}} with an average of {{average_value}} per observation.
+  {% elif overall_growth > -50 and overall_growth <= -5 %}
+    {{measure}} witnessed decline ({{overall_growth|abs}}%) over the last {{durationString}} and the total {{measure}} amounts to {{total}} with an average of {{average_value}} per observation.
+  {% elif overall_growth < -50 %}
+    {{measure}} witnessed strong decline ({{overall_growth|abs}}%) over the last {{durationString}} and the total {{measure}} amounts to {{total}} with an average of {{average_value}} per observation.
+  {% elif overall_growth > -5 and overall_growth <= 5 %}
+    {{measure}} witnessed no overall growth over the last {{durationString}} and the total {{measure}} amounts to {{total}} with an average of {{average_value}} per observation.
+  {% endif %}
+
+  {% if skew > 0.05 %}
+    {{measure}} have a positively skewed distribution as the top 25% observations account for about 57% of the total
+  {% elif skew < -0.05%}
+    {{measure}} have a positively skewed distribution as the top 25% observations account for about 57% of the total
+  {% elif skew >=-0.05 and skew <= 0.05 %}
+    The {{measure}} distribution is not skewed, which means that there are nearly equal contributions from low-value as well as high-value observations.
+  {% endif %}
+
+  PARASEPARATOR
+
+  {% if forecast == True %}
+    {% if overall_growth > 0 %}
+      {% if forecast_percentage > 0%}
+        Based on the robust overall growth, the {{measure}} figures are likely to experience a growth over the next few {{dateLevel}}
+      {% elif forecast_percentage < 0 %}
+        Despite the robust overall growth, the {{measure}} figures are likely to experience a decline over the next few {{dateLevel}}
+      {% else %}
+        Despite the robust overall growth, the {{measure}} figures are not likely to increase over the next few {{dateLevel}}.
+      {% endif %}
+    {% elif overall_growth < 0 %}
+      {% if forecast_percentage > 0%}
+        Despite the overall decline, the {{measure}} figures are likely to experience a growth over the next few {{dateLevel}}
+      {% elif forecast_percentage < 0 %}
+        Based on the the overall decline, the {{measure}} figures are likely to experience a decrease over the next few {{dateLevel}}
+      {% else %}
+        The {{measure}} figures are expected to stay steady over the next few {{dateLevel}}.
+      {% endif %}
+    {% else %}
+      {% if forecast_percentage > 0%}
+        The {{measure}} figures are expected to grow over the next few {{dateLevel}}.
+      {% elif forecast_percentage < 0 %}
+        The {{measure}} figures are expected to drop over the next few {{dateLevel}}.
+      {% else %}
+        The {{measure}} figures are expected to stay steady over the next few {{dateLevel}}.
+      {% endif %}
+    {% endif %}
+
+
+    {% if overall_growth > 0 %}
+      The total {{measure}} grew from {{start_value}} in {{start_time}} to
+      {{end_value}} in {{end_time}}, but the contribution from a streak of {{bucket_length}} {{dateLevel}} ({{bucket_duration}})
+       amounts to a total of {{bucket_contribution}}, which is close to {{ratio_string}} of the
+       overall {{measure}} for the {{durationString}} period.
+    {% elif overall_growth < 0 %}
+      The total {{measure}} declined from {{start_value}} in {{start_time}} to {{end_value}}
+      in {{end_time}}, but the contribution from a streak of {{bucket_length}} {{dateLevel}} ({{bucket_duration}})
+      amounts to a total of {{bucket_contribution}},
+      which is close to {{ratio_string}} of the overall {{measure}} for the {{durationString}} period.
+    {% else %}
+      The total {{measure}} started and ended at {{start_value}}, but the contribution from a streak
+      of {{bucket_length}} {{dateLevel}} ({{bucket_duration}}) amounts to a total of {{bucket_contribution}},
+       which is close to {{ratio_string}} of the overall {{measure}} for the {{durationString}} period.
+    {% endif %}
+
+    {% if overall_growth > 0 %}
+      {% if forecast_percentage > 0%}
+        Based on the overall growth, {{measure}} are likely to grow by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% elif forecast_percentage < 0 %}
+        Despite the overall growth, {{measure}} are likely to decline by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% else %}
+        Despite the overall growth, {{measure}} are likely to stay steady over the next {{prediction_window_text}}.
+      {% endif %}
+    {% elif overall_growth < 0 %}
+      {% if forecast_percentage > 0%}
+        Despite the overall decline, {{measure}} are likely to grow by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% elif forecast_percentage < 0 %}
+        Based on the overall decline, {{measure}} are likely to decrease by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% else %}
+        Despite the overall decline, {{measure}} are likely to stay steady over the next {{prediction_window_text}}.
+      {% endif %}
+    {% else %}
+      {% if forecast_percentage > 0%}
+        {{measure}} are likely to grow by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% elif forecast_percentage < 0 %}
+        {{measure}} are likely to decrease by {{forecast_percentage}} over the next {{prediction_window_text}}.
+      {% else %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  PARASEPARATOR
+
+  {% if sig_dims|length == 1%}
+    {{sig_dims[0]}}  have strong influence on {{measure}} as they explain significant portion of variance in {{measure}}.
+  {% elif sig_dims|length == 2%}
+    {{sig_dims[0]}} and {{sig_dims[1]}} have strong influence on {{measure}} as they explain significant portion of variance in {{measure}}.
+  {% elif sig_dims|length == 3%}
+    {{sig_dims[0]}},{{sig_dims[1]}} and {{sig_dims[2]}} have strong influence on {{measure}} as they explain significant portion of variance in {{measure}}.
+  {% elif sig_dims|length > 3%}
+    {{sig_dims|length}} Dimesnions including {{sig_dims[0]}},{{sig_dims[1]}} and {{sig_dims[2]}} have strong influence on {{measure}} as they explain significant portion of variance in {{measure}}.
+  {% endif %}
+
+  {% if sig_dims|length == 1%}
+    {% if anova_data|length == 1%}
+
+      {% if anova_data[0]["num_red_alert"] == 1 %}
+        {{sig_dims[0]}} - {{anova_data[0]["red_alert"][0]}} is not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[0]["num_red_alert"] == 2 %}
+        {{sig_dims[0]}} - {{anova_data[0]["red_alert"][0]}} and {{anova_data[0]["red_alert"][1]}} are not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[0]["num_red_alert"] > 2 %}
+        {{anova_data[0]["red_alert"][0]}},
+        {{anova_data[0]["red_alert"][1]}} and {{anova_data[0]["red_alert"][2]}}
+      {% endif %}
+    {% endif %}
+  {% elif sig_dims|length >= 2%}
+    {% if anova_data|length == 2%}
+      {% if anova_data[0]["num_red_alert"] == 1 %}
+        {{sig_dims[0]}} - {{anova_data[0]["red_alert"][0]}} is not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[0]["num_red_alert"] == 2 %}
+        {{sig_dims[0]}} - {{anova_data[0]["red_alert"][0]}} and {{anova_data[0]["red_alert"][1]}} are not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[0]["num_red_alert"] > 2 %}
+        {{anova_data[0]["red_alert"][0]}},
+        {{anova_data[0]["red_alert"][1]}} and {{anova_data[0]["red_alert"][2]}}
+      {% endif %}
+      Also,
+      {% if anova_data[1]["num_red_alert"] == 1 %}
+        {{sig_dims[1]}} - {{anova_data[1]["red_alert"][0]}} is not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[1]["num_red_alert"] == 2 %}
+        {{sig_dims[1]}} - {{anova_data[1]["red_alert"][0]}} and {{anova_data[1]["red_alert"][1]}} are not performing well both in terms of {{target}} contribution and growth.
+      {% elif anova_data[1]["num_red_alert"] > 2 %}
+        {{anova_data[1]["red_alert"][0]}},
+        {{anova_data[1]["red_alert"][1]}} and {{anova_data[1]["red_alert"][2]}}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  PARASEPARATOR
+
+  mAdvisor has observed opportunities for improving the {{measure}} figures by engaging with other key factor and metrics.
+
+  <ul>
+    {% if anova_data|length > 0%}
+    <li>
+      Focusing more on {{sig_dims[0]}},
+      {% if anova_data[0]["num_red_alert"] == 1 %}
+        {{anova_data[0]["red_alert"][0]}}
+      {% elif anova_data[0]["num_red_alert"] == 2 %}
+        {{anova_data[0]["red_alert"][0]}} and {{anova_data[0]["red_alert"][1]}}
+      {% elif anova_data[0]["num_red_alert"] > 2 %}
+        {{anova_data[0]["red_alert"][0]}},{{anova_data[0]["red_alert"][1]}} and {{anova_data[0]["red_alert"][2]}}
+      {% endif %}
+      would enhance overall {{measure}}, as they show high potential for growth
+      and hold significant portion of current {{measure}}.
+    </li>
+    {% endif %}
+       A one percentage increase in {{measure_column}} for the segment, where
+       {% if freq["high1high2"]|length == 1 %}
+          {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}}).
+       {% elif freq["high1high2"]|length == 2 %}
+          {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+          and {{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}).
+       {% elif freq["high1high2"]|length >=3 %}
+          {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+          ,{{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}) and {{freq["high1high2"][2][2]}} ({{freq["high1high2"][2][0]}}).
+       {% endif %}
+       will correspond to {{overall_elasticity|abs}}%
+       {% if overall_elasticity > 0 %}
+          increase
+       {% else %}
+          decrease
+       {% endif %}
+       in {{measure}}.
+    <li>
+    High-value segment (top group {{measure}} observations) has an average sale of
+    {{average_high_group}}, which is {{high_vs_overall}}% higher than the overall average ({{average_overall}}). Here are the
+    typical characteristics of high-value sales observations.
+      {% if rules_list_high|length >= 1 %}
+      <ul>
+      {% for rule in rules_list_high %}
+      <li> {{rule}} </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+  </ul>
+{% endif %}

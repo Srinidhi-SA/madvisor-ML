@@ -1,0 +1,144 @@
+Sensitivity Analysis
+
+PARAHEADER
+
+{{measure_column}} seems to have a remarkable impact on various segments of {{result_column}}
+observations. The chart above shows four quadrants based on the distribution of {{result_column}}
+(high vs. low) and marketing cost (high vs. low).
+
+PARASEPARATOR
+
+{% if freq["high1high2"]|length == 1 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% elif freq["high1high2"]|length == 2 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+  and {{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% elif freq["high1high2"]|length >=3 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+  ,{{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}) and {{freq["high1high2"][2][2]}} ({{freq["high1high2"][2][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% endif %}
+
+PARASEPARATOR
+
+{% if freq["low1low2"]|length == 1 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>: {{result_column}}
+  from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}}) mostly belongs to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% elif freq["low1low2"]|length == 2 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>:
+  Mostly {{result_column}} from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}})
+  and {{freq["low1low2"][1][2]}} ({{freq["low1low2"][1][0]}}) belong to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% elif freq["low1low2"]|length >=3 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>:
+  Mostly {{result_column}} from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}})
+  , {{freq["low1low2"][1][2]}} ({{freq["low1low2"][1][0]}}) and {{freq["low1low2"][2][2]}} ({{freq["low1low2"][2][0]}}) belong to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% endif %}
+
+PARASEPARATOR
+
+{% if freq["high1low2"]|length == 1 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from
+  {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}}).
+{% elif freq["high1low2"]|length == 2 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}})
+  and {{freq["high1low2"][1][2]}} ({{freq["high1low2"][1][0]}}).
+{% elif freq["high1low2"]|length >=3 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}})
+  ,{{freq["high1low2"][1][2]}} ({{freq["high1low2"][1][0]}}) and {{freq["high1low2"][2][2]}} ({{freq["high1low2"][2][0]}}).
+{% endif %}
+
+PARASEPARATOR
+
+{% if freq["low1high2"]|length == 1 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: The segment,which is least effective
+  to {{measure_column}} comes from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}}).
+{% elif freq["low1high2"]|length == 2 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: Nearly {{contribution["low1high2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}})
+  and {{freq["low1high2"][1][2]}} ({{freq["low1high2"][1][0]}}).
+{% elif freq["low1high2"]|length >=3 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: Nearly {{contribution["low1high2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}})
+  , {{freq["low1high2"][1][2]}} ({{freq["low1high2"][1][0]}}) and {{freq["low1high2"][2][2]}} ({{freq["low1high2"][2][0]}}).
+{% endif %}
+
+PARASEPARATOR
+
+{% if overall_elasticity|abs > 1 %}
+  Overall, {{result_column}} values are <b>relatively elastic to changes</b> in {{measure_column}}.
+{% else %}
+  Overall, {{result_column}} values are <b>relatively inelastic to changes</b> in {{measure_column}}.
+{% endif %}
+{% if overall_elasticity > 0 %}
+  For a one percent increase in {{measure_column}} is associated with a {{overall_elasticity | round(2)}}
+  increase in {{result_column}}.
+{% else %}
+  For a one percent increase in {{measure_column}} is associated with a {{overall_elasticity | round(2)}}
+  decrease in {{result_column}}.
+{% endif %}
+However, the sensitivity of {{result_column}} to change in {{measure_column}} varies across these four segments.
+
+PARASEPARATOR
+
+  <ul>
+    {% if elastic_count == 4 %}
+    <li>All the segments {{elastic_grp_list[0][0]}} ({{elastic_grp_list[0][1]}}),
+     {{elastic_grp_list[1][0]}} ({{elastic_grp_list[1][1]}}),
+     {{elastic_grp_list[2][0]}} ({{elastic_grp_list[2][1]}})
+     and {{elastic_grp_list[3][0]}} ({{elastic_grp_list[3][1]}}) show some elasticity.</li>
+    {% elif elastic_count < 4 %}
+      {% if elastic_count == 1%}
+        <li>{{elastic_grp_list[0][0]}}  show relatively higher sensitivity to change
+         in {{measure_column}} ({{elastic_grp_list[0][1]}})% for a one percent
+         increase in {{measure_column}}, compared to other segments.</li>
+      {% elif elastic_count == 2 %}
+        <li>{{elastic_grp_list[0][0]}} and {{elastic_grp_list[1][0]}} show relatively
+        higher sensitivity to change in {{measure_column}}
+        ({{elastic_grp_list[0][1] | round(2)}}% and {{elastic_grp_list[1][1] | round(2)}}% respectively,
+        for a one percent increase in {{measure_column}}) compared to other segments.</li>
+      {% elif elastic_count == 3 %}
+        <li>{{elastic_grp_list[0][0]}},{{elastic_grp_list[1][0]}} and {{elastic_grp_list[2][0]}}
+         show relatively higher sensitivity to change in {{measure_column}}
+         ({{elastic_grp_list[0][1] | round(2)}}%,{{elastic_grp_list[1][1] | round(2)}}% and {{elastic_grp_list[2][1]}}%
+          respectively, for a one percent increase in {{measure_column}}) compared to other segments.</li>
+
+      {% endif %}
+    {% endif %}
+
+    {% if inelastic_count == 4%}
+      <li>All the segments {{inelastic_grp_list[0][0]}} ({{inelastic_grp_list[0][1]}}),
+      {{inelastic_grp_list[1][0]}} ({{inelastic_grp_list[1][1]}}),
+      {{inelastic_grp_list[2][0]}} ({{inelastic_grp_list[2][1]}})
+      and {{inelastic_grp_list[3][0]}} ({{inelastic_grp_list[3][1]}}) are inelastic.</li>
+    {% elif inelastic_count < 4 %}
+       {% if inelastic_count == 1 %}
+       <li>Interestingly, for {{inelastic_grp_list[0][0]}}  segment, {{result_column}} changes by
+        {{inelastic_grp_list[0][1] | round(2)}}%  for a one percent increase in {{measure_column}}.
+        It implies that any incremental change in {{measure_column}} undermines potential
+        sales from this segment.</li>
+       {% elif inelastic_count == 2 %}
+       <li>Interestingly {{inelastic_grp_list[0][0]}} and {{inelastic_grp_list[1][0]}} segment,
+       {{result_column}} changes by {{inelastic_grp_list[0][1] | round(2)}}% and {{inelastic_grp_list[1][1] | round(2)}}%
+       for a one percent increase in {{measure_column}}.
+        It implies that any incremental change in {{measure_column}} undermines potential
+        sales from this segment.</li>
+       {% elif inelastic_count == 3 %}
+       <li>Interestingly {{inelastic_grp_list[0][0]}},{{inelastic_grp_list[1][0]}} and {{inelastic_grp_list[2][0]}} segment,
+       {{result_column}} changes by {{inelastic_grp_list[0][1] | round(2)}}%,{{inelastic_grp_list[1][1]}}% and {{inelastic_grp_list[2][1] | round(2)}}%
+       for a one percent increase in {{measure_column}}.
+        It implies that any incremental change in {{measure_column}} undermines potential
+        sales from this segment.</li>
+       {% endif %}
+    {% endif %}
+    </ul>

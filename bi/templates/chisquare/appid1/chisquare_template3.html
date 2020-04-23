@@ -1,0 +1,21 @@
+{% if num_variables > 1 %}
+  {% if num_categories > 1 %}
+    {% if fifty_percent_categories|length == 1 %}
+      {{fifty_percent_categories[0]}} accounts for <b>more than half</b> ({{fifty_percent_contribution}}%) of the total observations,
+      whereas {{lowest_contributor}} has just {{lowest_contributor_percent}}% of the total.
+    {% elif fifty_percent_categories|length == 2 %}
+      {{fifty_percent_categories[0]}} and {{fifty_percent_categories[1]}} accounts for <b>more than half</b> ({{fifty_percent_contribution}}%) of the total observations,
+      whereas {{lowest_contributor}} has just {{lowest_contributor_percent}}% of the total.
+    {% elif fifty_percent_categories|length == 3 %}
+      The top three {{analysed_dimension}} ({{fifty_percent_categories[0]}}, {{fifty_percent_categories[1]}} and {{fifty_percent_categories[2]}}) accounts for <b>more than half</b> ({{fifty_percent_contribution}}%) of the total observations,
+      whereas {{lowest_contributor}} has just {{lowest_contributor_percent}}% of the total.
+    {% elif fifty_percent_categories|length >3 %}
+      The top {{fifty_percent_categories|length}} {{analysed_dimension}} (including {{fifty_percent_categories[0]}}, {{fifty_percent_categories[1]}}, etc..) accounts for <b>more than half</b> ({{fifty_percent_contribution}}%) of the total observations,
+      whereas {{lowest_contributor}} has just {{lowest_contributor_percent}}% of the total.
+    {% endif %}
+
+    Being the largest segment, <b>{{maximum_category[0]}} in {{maximum_category[1]}}</b> has about {{maximum_observation}} observations,
+    covering {{maximum_percent}}% of total.
+    On the other hand, {{minimum_category[0]}} in {{minimum_category[1]}} represents just {{minimum_percent}}% of the total observations.
+  {% endif %}
+{% endif %}

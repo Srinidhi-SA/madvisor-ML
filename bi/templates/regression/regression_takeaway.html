@@ -1,0 +1,9 @@
+{% if n_s_m == 0 %}
+  It doesn't seem to have significant relationship with any measures.
+{% elif n_s_m == 1 %}
+  It seems to have significant relationship only with {{sm[0]}}.
+{% elif n_ns_m == 2 %}
+  It seems to have significant relationship with {{sm[0]}} and {{sm[1]}}.
+{% else %}
+  It seems to have significant relationship with {{sm[0]}},{{sm[1]}} and {{sm|length-2}} other measures.
+{% endif %}

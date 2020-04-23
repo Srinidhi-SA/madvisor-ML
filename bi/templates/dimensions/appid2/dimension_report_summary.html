@@ -1,0 +1,16 @@
+<p class="lead txt-justify">
+mAdvisor has analyzed the dataset, which contains
+{% if n_t == 1%}
+  <b>{{n_t|intcomma}}</b> variable and <b>{{observations|round_number}}</b> observations.
+{% else %}
+  <b>{{n_t|intcomma}}</b> variables and <b>{{observations|round_number}}</b> observations.
+{% endif %}
+
+{% if ignorecolumns|length == 1%}
+  There is <b>{{ignorecolumns|length|intcomma}}</b> variable that has been excluded from the analysis due to its relative insignificance.
+{% elif ignorecolumns|length > 1 %}
+  There are <b>{{ignorecolumns|length|intcomma}}</b> variables that have been excluded from the analysis due to their relative insignificance.
+{%endif%}
+
+Please click next to find the insights from our analysis of <b>{{c}}</b>, that describes how it is distributed, what drives it, and how we can predict it.
+</p>

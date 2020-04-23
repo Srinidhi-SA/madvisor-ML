@@ -1,0 +1,22 @@
+<p class = "txt-justify">
+{% if rows == 1 %}
+      The {{col_name}} variable has only one observation, i.e {{total}}
+  {% elif rows == 2 %}
+      The {{col_name}} variable has <b>only two observations</b>, which are {{min}} and {{max}}. The total {{col_name}} amounts to
+      {{total}} with the average {{col_name}} per observation being {{avg}}.
+  {% elif rows > 2 %}
+      The value for {{col_name}} range from a <b>minimum</b> of {{min}}
+      {% if max > 50 %} all the way upto {% else %} to {% endif %}
+      a <b>maximum</b> of {{max}}. The <b>sum of {{col_name}}</b> amounts to
+      {{total}} with the <b>average</b> {{col_name}} per observation being {{avg}}.
+      The dataset contains {{rows}} <b>observations</b> and
+      {% if o == 0 %} there are no outliers.
+      {% elif o == 1 and r == 1 %} there is one observation (outlier) that has <b>extremely high</b> value of {{col_name}}
+      {% elif o == 1 and l == 1 %} there is one observation (outlier) that has <b>extremely low</b> value of {{col_name}}
+      {% elif l > 1 and r == 0 %} there are {{l}} observations (outliers) that have <b>extremely low</b> value of {{col_name}}
+      {% elif r > 1 and l == 0 %} there are {{r}} observations (outliers) that have <b>extremely high</b> value of {{col_name}}
+      {% else %} there are {{o}} outliers. It includes {{l}} observations that have <b>extremely low</b> values of {{col_name}}
+                 and {{r}} observations with <b>extremely high</b> {{col_name}} figures.
+      {% endif %}
+  {% endif %}
+</p>

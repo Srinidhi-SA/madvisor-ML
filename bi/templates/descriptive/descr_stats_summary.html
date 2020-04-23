@@ -1,0 +1,19 @@
+<p class = "lead txt-justify">
+mAdvisor has analyzed the dataset and it contains<b>
+{% if n_t == 1%}
+  {{n_t | intcomma}}</b> variable and <b>{{observations | round_number}}</b> observations.
+{% else %}
+  {{n_t | intcomma}}</b> variables and <b>{{observations | round_number}}</b> observations.
+{% endif %}
+
+Please click view summary to find the insights from our
+{% if m|length == 1 %}
+  distribution
+{%endif%}
+  analysis of <b>{{c}}</b>
+{% if n_c == 2 %}
+  factoring other two variables.
+{% elif n_c > 2 %}
+  factoring the other variables.
+{% endif %}
+</p>

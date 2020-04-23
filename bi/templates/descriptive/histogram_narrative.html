@@ -1,0 +1,22 @@
+{% if num_bins > 1 %}
+  <p class = "txt-justify">The histogram shows distribution of {{col_name}} divided into {{num_bins}} categories.</p>
+
+{% endif %}
+  {% if num_bins == 2 %}
+  <p class = "txt-justify">The first bin ({{histogram[0]['start_value']|round_number}} to {{histogram[0]['end_value']|round_number}}) accounts for {{per_cont_hist1}} percent of the total observations,
+    whereas the bin ({{histogram[1]['start_value']}} to {{histogram[1]['end_value']}}) accounts for the remaining {{per_cont_hist2}} percentage.</p>
+  {% elif num_bins == 3 %}
+    <p class = "txt-justify">The lowest category accounts for {{lowest_cont}} percentage of total {{col_name}}, while the highest category accounts for {{highest_cont}} percentage of total {{col_name}}.</p>
+  {% elif num_bins > 3 %}
+    <p class = "txt-justify">The plot indicates that the {{measure_colname}} observations are
+        {% if seventy_five <= 30 %} <b>heavily concentrated</b> around a <b>few categories</b>, as more than <b>three quarters</b> ({{three_quarter_percent}}%) of {{col_name}} values are between <b>{{start_value|round_number}} and {{end_value|round_number}}</b>.
+        {% elif seventy_five >= 60 %} spread across <b>many categories</b>, as more than <b>three quarters</b> ({{three_quarter_percent}}%) of {{col_name}} values are between <b>{{start_value|round_number}} and {{end_value|round_number}}</b>.
+        {% else %} moderately concentrated around a few categories, as more than <b>three quarters</b> ({{three_quarter_percent}}%) of {{col_name}} values are between <b>{{start_value|round_number}} and {{end_value|round_number}}</b>.
+        {% endif %}
+
+    The distribution is
+        {% if skew <= 0.1 and skew >= -0.1 %} <b>not skewed</b>, which means that there are nearly equal contributions from low-value as well as <b>high-value</b> {{col_name}} observations.
+        {% elif skew > 0.1 %} <b>positively skewed</b>, which implies that there is a significant chunk of <b>low-value</b> {{col_name}} observations.
+        {% else %} <b>negatively skewed</b>, which implies that there is a significant chunk of <b>high-value</b> {{col_name}} observations.
+        {% endif %}</p>
+  {% endif %}

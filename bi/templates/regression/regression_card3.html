@@ -1,0 +1,20 @@
+<p class="txt-justify">
+{% if change_percent > 5 %}
+  {{measure}} increased from {{start_value}} in {{start_date}} to {{end_value}} in {{end_date}}, which
+  is a {{end_value - start_value}} increase over {{durationString}} period.
+{% elif change_percent < 5 %}
+  {{measure}} decreased from {{start_value}} in {{start_date}} to {{end_value}} in {{end_date}}, which
+  is a {{end_value - start_value}} increase over {{durationString}} period.
+{% else %}
+  {{measure}} remained flat from {{start_date}} to {{end_date}}.
+{% endif %}
+
+It hit a peak of {{peak_value}} in {{peak_date}} and had the lowest ({{lowest_value}}) in {{lowest_date}}.
+The total {{measure}} for the entire time period is {{total_measure}}, which is about {{fold}}%
+of the overall {{target}}.
+{% if correlation >= 0.85 %}
+Also, {{measure}} is moving mostly in line with {{target}}.
+{% else %}
+But, over the period of time, we can see some variations in the ratio between {{measure}} and {{target}}.
+{% endif %}
+</p>

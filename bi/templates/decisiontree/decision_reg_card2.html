@@ -1,0 +1,59 @@
+Predicting the Drivers of {{dimension_name}}
+PARAHEADER
+The total {{plural_colname}} from top {{count_percent_high}}% of observations amounts to {{sum_high}},
+which accounts for {{sum_percent_high}}% of the overall {{dimension_name}}.
+On the other hand, the bottom {{count_percent_low}}% has contributed to {{sum_percent_low}}% of
+the total {{dimension_name}}.
+
+PARASEPARATOR
+
+High {{dimension_name}}
+
+PARAHEADER
+{% if significant_vars_high|length == 1 %}
+Key variable that characterize the segment of High {{dimension_name}} is {{significant_vars_high[0]}}.
+{% elif significant_vars_high|length == 2 %}
+Key variables that characterize the segment of High {{dimension_name}} are {{significant_vars_high[0]}} and {{significant_vars_high[1]}}.
+{% elif significant_vars_high|length > 2 %}
+Key variables that characterize the segment of High {{dimension_name}} includes {{significant_vars_high[0]}}, {{significant_vars_high[1]}} and {{significant_vars_high[2]}}.
+{% endif %}
+{% if rules_list_high|length > 1 %}
+Below are the rules that characterize the top {{plural_colname}}.
+{% elif rules_list_high|length == 1 %}
+Below is the rule that categorize the top {{plural_colname}}.
+{% endif %}
+
+PARASEPARATOR
+{% if rules_list_high|length >= 1 %}
+<ul>
+{% for rule in rules_list_high %}
+<li> {{rule}} </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+PARASEPARATOR
+
+Low {{dimension_name}}
+
+PARAHEADER
+{% if significant_vars_low|length == 1 %}
+Significant portion of Low value {{dimension_name}} observations is concentrated around specific categories
+of {{significant_vars_low[0]}}.
+{% elif significant_vars_low|length == 2 %}
+Significant portion of Low value {{dimension_name}} observations is concentrated around specific categories
+of {{significant_vars_low[0]}} and {{significant_vars_low[1]}}.
+{% elif significant_vars_low|length > 2 %}
+Significant portion of Low value {{dimension_name}} observations is concentrated around specific categories
+of {{significant_vars_low[0]}}, {{significant_vars_low[1]}} and {{significant_vars_low[2]}}.
+{% endif %}
+
+PARASEPARATOR
+
+{% if rules_list_low|length >= 1 %}
+<ul>
+{% for rule in rules_list_low %}
+<li> {{rule}} </li>
+{% endfor %}
+</ul>
+{% endif %}

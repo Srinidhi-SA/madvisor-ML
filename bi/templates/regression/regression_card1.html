@@ -1,0 +1,36 @@
+<h4>Overview</h4>
+{{blockSplitter}}
+<p class="txt-justify">
+{% if n_sig_measures == 1 %}
+  {{measure_column}} is the only <b>significant influencer</b> of {{result_column}}
+  and it explains a great magnitude of change in {{result_column}}.
+{% elif n_sig_measures >1 %}
+  {{measure_column}} is one of the <b>significant influencer</b> of {{result_column}}
+   and it explains a great magnitude of change in {{result_column}}.
+{% endif %}
+
+{% if correlation >=0.7 and correlation < 1 %}
+  It is <b>positively & strongly correlated</b> with the {{result_column}} figures.
+{% elif correlation >=0.4 and correlation < 0.7 %}
+  It is <b>positively & moderately correlated</b> with the {{result_column}} figures.
+{% elif correlation >=0   and correlation < 0.4 %}
+  It is <b>positively correlated</b> with the {{result_column}} figures.
+{% elif correlation >= -1 and correlation < -0.7 %}
+  It is <b>negatively & strongly correlated</b> with the {{result_column}} figures.
+{% elif correlation >= -0.7 and correlation < -0.4 %}
+  It is <b>negatively & moderately correlated</b> with the {{result_column}} figures.
+{% elif correlation >= -0.4 and correlation < 0 %}
+  It is <b>negatively correlated</b> with the {{result_column}} figures.
+{% endif %}
+
+{% if correlation >=0.4 and correlation < 1 %}
+  As {{measure_column}} changes, {{result_column}} also tend to move in the same direction.
+{% elif correlation >=-1 and correlation < -0.4 %}
+  As {{measure_column}} changes, {{result_column}} tend to move in the opposite direction.
+{% endif %}
+{% if coefficient > 0 %}
+  An incremental unit change in {{measure_column}} corresponds to an average increase in {{result_column}} by {{coefficient}} units.
+{% elif coefficient < 0%}
+  An incremental unit change in {{measure_column}} corresponds to an average decrease in {{result_column}} by {{coefficient}} units.
+{% endif %}
+</p>

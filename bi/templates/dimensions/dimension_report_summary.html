@@ -1,0 +1,11 @@
+<p class="lead txt-justify">
+mAdvisor has analyzed the dataset, which contains<b>
+{% if n_t == 1%}
+  {{n_t|intcomma}}</b> variable and <b>{{observations|round_number}}</b> observations.
+{% else %}
+  {{n_t|intcomma}}</b> variables and <b>{{observations|round_number}}</b> observations.
+{% endif %}
+
+
+Please click view summary to find the insights from our analysis of <b>{{c}}</b>, that describes how it is distributed, what drives it, and how we can predict it.
+</p>

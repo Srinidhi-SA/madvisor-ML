@@ -1,0 +1,30 @@
+<h3>Predicting the Key Drivers of {{targetcol}}</h3>
+{{blockSplitter}}
+<p>
+  mAdvisor has arrived at a set of prediction rules for the data set.
+  Here is the summary of the prediction results along with the rules for prediction
+</p>
+{{blockSplitter}}
+<div className='col-md-3 pred_disp_block cursor'>
+  <a>
+    <h1>{{probabilityGroups[0]["count"]}}
+      <small>
+        Strong Signals
+      </small>
+    </h1>
+  </a>
+  <p>
+    Rules leading to a single outcome More than {{probabilityGroups[0]["probability"]}}% of the time.
+  </p>
+</div>
+{{blockSplitter}}
+<div className='col-md-3 pred_disp_block cursor'>
+  <a>
+  <h1>{{probabilityGroups[1]["count"]}} <small>Mixed Signals </small>
+  </h1>
+</a>
+  <p>
+    Rules leading to multiple outcomes therefore these signals must be
+    considered all together
+  </p>
+</div>

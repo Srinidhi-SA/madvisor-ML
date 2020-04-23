@@ -1,0 +1,21 @@
+{% if per >= 75 %}
+  The portfolio has a significantly high exposure to equity, as it has more than three quarters ({{per}}%) of the total investment.
+{% elif per >= 65 and per < 75 %}
+  The portfolio has a very high exposure to equity, as it has almost two-thirds ({{per}}%) of the total investment.
+{% elif per > 50 %}
+  The portfolio has a high exposure to equity, as it has more than half ({{per}}%) of the total investment.
+{% elif per >= 30 and per < 50 %}
+  The portfolio has a moderate level of exposure to equity, as it has about ({{per}}%) of the total investment.
+{% elif per < 30 %}
+  The portfolio does not have significant exposure to equity, as it has just about ({{per}}%) of the total investment.
+{% endif %}
+
+{% if cat|length == 2 and max_cat >= 70 %}
+  And it is split across {{cat[0]}} and {{cat[1]}}, with INR {{cat_sum[cat[0]]}} and INR {{cat_sum[cat[1]]}} respectively.
+{% elif cat|length == 2 and max_cat < 70 %}
+  And it is diversified across {{cat[0]}} and {{cat[1]}}, with INR {{cat_sum[cat[0]]}} and INR {{cat_sum[cat[1]]}} respectively.
+{% cat|length > 2 and max_cat >= 60 %}
+  And it is split across {{cat[0]}},{{cat[1]}} and {{cat[2]}}, with INR {{cat_sum[cat[0]]}},{{cat_sum[cat[1]]}} and INR {{cat_sum[cat[2]]}} respectively.
+{% cat|length > 2 and max_cat < 60 %}
+  And it is distributed across {{cat[0]}},{{cat[1]}} and {{cat[2]}}, with INR {{cat_sum[cat[0]]}},{{cat_sum[cat[1]]}} and INR {{cat_sum[cat[2]]}} respectively.
+{% endif %}

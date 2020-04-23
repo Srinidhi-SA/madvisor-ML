@@ -1,0 +1,12 @@
+To build docker file
+	docker build -t spark:latest .
+
+To run the container manually:
+	1. Create a docker volume named conf
+	2. docker inspect volume conf to get the path of conf.
+	3. create a file spark.conf in that path mention master in it.
+	4. docker run -p 8080:8080 -v conf:/tmp/ -dt <image_id>
+	5. change in spark.conf, write there slave and masterIP. Ex: slave 172.17.0.3
+	6. docker run -p 4040:4040 -v conf:/tmp/ -dt <image_id>
+
+To run spark container along with hadoop container refer the README file in hadoop_spark_compose directory

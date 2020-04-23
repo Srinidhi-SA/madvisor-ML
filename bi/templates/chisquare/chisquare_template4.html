@@ -1,0 +1,10 @@
+{% if num_significant_variables > 1 %}
+  {% if num_categories > 1 %}
+    There is an association between {{target_dimension}} and {{analysed_dimension}} and the distribution of {{analysed_dimension}} seems to be <b>significantly different</b> across {{target_dimension}}.
+    Looking at the distribution of {{analysed_dimension}} within {{target_dimension}} reveals how interesting some of their relationships are.
+    {% if max_var|length >= 3 and min_var|length >=1 %}
+      {{max_var[0]}} seems to be relatively <b>less diversified</b>, with {{max_var[2]|round}}% of the total observations coming from {{max_var[1]}} alone.
+      On the other hand, {{min_var[0]}} is found to be relatively <b>spread across</b> all {{analysed_dimension}}.
+    {% endif %}
+  {% endif %}
+{% endif %}

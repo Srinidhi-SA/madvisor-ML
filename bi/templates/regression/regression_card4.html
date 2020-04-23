@@ -1,0 +1,75 @@
+<h4>Sensitivity Analysis</h4>
+
+{{blockSplitter}}
+<p class="txt-justify">
+{{measure_column}} seems to have a remarkable impact on various segments of {{result_column}}
+observations. The chart above shows four quadrants based on the distribution of {{result_column}}
+(high vs. low) and {{measure_column}} (high vs. low).
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+{% if freq["high1high2"]|length == 1 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% elif freq["high1high2"]|length == 2 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+  and {{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% elif freq["high1high2"]|length >=3 %}
+  <b>High {{result_column}} with High {{measure_column}}</b>: The {{result_column}} observations
+  from this quadrant are typically from {{freq["high1high2"][0][2]}} ({{freq["high1high2"][0][0]}})
+  ,{{freq["high1high2"][1][2]}} ({{freq["high1high2"][1][0]}}) and {{freq["high1high2"][2][2]}} ({{freq["high1high2"][2][0]}}).
+  It accounts for about {{contribution["high1high2"]}} of the total population.
+{% endif %}
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+{% if freq["low1low2"]|length == 1 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>: {{result_column}}
+  from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}}) mostly belongs to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% elif freq["low1low2"]|length == 2 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>:
+  Mostly {{result_column}} from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}})
+  and {{freq["low1low2"][1][2]}} ({{freq["low1low2"][1][0]}}) belong to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% elif freq["low1low2"]|length >=3 %}
+  <b>Low {{result_column}} with Low {{measure_column}}</b>:
+  Mostly {{result_column}} from {{freq["low1low2"][0][2]}} ({{freq["low1low2"][0][0]}})
+  , {{freq["low1low2"][1][2]}} ({{freq["low1low2"][1][0]}}) and {{freq["low1low2"][2][2]}} ({{freq["low1low2"][2][0]}}) belong to this segment.
+  They cover nearly {{contribution["low1low2"]}} of the total population.
+{% endif %}
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+{% if freq["high1low2"]|length == 1 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from
+  {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}}).
+{% elif freq["high1low2"]|length == 2 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}})
+  and {{freq["high1low2"][1][2]}} ({{freq["high1low2"][1][0]}}).
+{% elif freq["high1low2"]|length >=3 %}
+  <b>High {{result_column}} with Low {{measure_column}}</b>: Nearly {{contribution["high1low2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["high1low2"][0][2]}} ({{freq["high1low2"][0][0]}})
+  ,{{freq["high1low2"][1][2]}} ({{freq["high1low2"][1][0]}}) and {{freq["high1low2"][2][2]}} ({{freq["high1low2"][2][0]}}).
+{% endif %}
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+{% if freq["low1high2"]|length == 1 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: The segment,which is least effective
+  to {{measure_column}} comes from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}}).
+{% elif freq["low1high2"]|length == 2 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: Nearly {{contribution["low1high2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}})
+  and {{freq["low1high2"][1][2]}} ({{freq["low1high2"][1][0]}}).
+{% elif freq["low1high2"]|length >=3 %}
+  <b>Low {{result_column}} with High {{measure_column}}</b>: Nearly {{contribution["low1high2"]}} of the total
+  observations are from this group and they are generally coming from {{freq["low1high2"][0][2]}} ({{freq["low1high2"][0][0]}})
+  , {{freq["low1high2"][1][2]}} ({{freq["low1high2"][1][0]}}) and {{freq["low1high2"][2][2]}} ({{freq["low1high2"][2][0]}}).
+{% endif %}
+</p>

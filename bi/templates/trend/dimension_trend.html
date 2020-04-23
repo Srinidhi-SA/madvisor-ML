@@ -1,0 +1,98 @@
+<h3>How {{target_column}} is Changing over Time</h3>
+{{blockSplitter}}
+<p class="txt-justify">
+  This section provides insights on how {{target_column}} categories are trending
+  over time and captures the most significant moments that defined the overall
+  pattern or trend over the observation period.
+</p>
+{{blockSplitter}}
+{% if level_index == 0 %}
+  <h4>{{measure}}</h4>
+  {{blockSplitter}}
+  <p class="txt-justify">
+  {% if overall_growth >= 1 %}
+    The percentage of {{measure}} <b>increased</b> from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% elif overall_growth <= -1 %}
+    The percentage of {{measure}} <b>decreased</b> from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% else %}
+    The percentage of {{measure}} remained <b>unchanged</b> from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% endif %}
+
+  The total number of observations for {{measure}} was {{total_count}} for the last {{durationString}},
+   and the <b> average rate</b> of {{measure}} was <b>{{average_value}}%</b>.
+
+  {% if bucket_ratio_string != "" %}
+    Interestingly, the total number of observations for {{measure}} during a streak of {{bucket_length}} {{dataLevel}}s ({{bucket_duration}})
+    amounts to a total of {{bucket_count}}, which is almost {{bucket_ratio_string}} of the overall
+    {{measure}} for the {{durationString}} period.
+  {% endif %}
+  </p>
+  {{blockSplitter}}
+  <p class="txt-justify">
+  {{measure}} category hit a peak of <b>{{peakValue}}%</b> in <b>{{peakTime}}</b>,
+  when the total number of {{measure}} observations was {{max_count}}.
+  {% if highest_contributing_variable != None %}
+    The most significant factor that fuelled this strong run is the <b>{{highest_contributing_variable}}</b>
+    {% if category_flag == True %}
+      category
+    {% endif%}
+    ,{{highest_contributing_level}}.
+    {% if peakIndex != 0 %}
+      The {{measure}} rate for <b>{{highest_contributing_level}}</b> in {{peakTime}}, increased by over
+      <b>{{highest_contributing_level_increase|round_number}}</b> percentage points ({{highest_contributing_level_range}})
+      compared to rest of the observation period.
+      </p>
+    {% endif %}
+  {% endif %}
+{% elif level_index == 1%}
+
+  <h4>{{measure}}</h4>
+  {{blockSplitter}}
+  <p class="txt-justify">
+  {% if overall_growth >= 0 and overall_growth <= 5 %}
+    There was a moderate <b>increase</b> in {{measure}}, as it increased from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% elif overall_growth < 0 and overall_growth >= -5 %}
+    There was a moderate decline in {{measure}}, as it decreased from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% elif overall_growth > 5 %}
+    There was a significant <b>increase</b> in {{measure}}, as it increased from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% elif overall_growth < -5 %}
+    There was a significant <b>decline</b> in {{measure}}, as it decreased from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% else %}
+    The rate of {{measure}} remained unchanged from <b> {{start_value|abs}}% </b> in {{start_time}}
+    to <b>{{end_value|abs}}%</b> in {{end_time}}.
+  {% endif %}
+
+  The total number of observations for {{measure}} was {{total_count}} for the last {{durationString}},
+   and the <b> average rate</b> of {{measure}} was <b>{{average_value}}%</b>.
+
+  {% if bucket_ratio_string != "" %}
+    Interestingly, the total number of observations for {{measure}} during a streak of {{bucket_length}} {{dataLevel}}s ({{bucket_duration}})
+    amounts to a total of {{bucket_count}}, which is almost {{bucket_ratio_string}} of the overall
+    {{measure}} for the {{durationString}} period.
+  {% endif %}
+  </p>
+  {{blockSplitter}}
+  <p class="txt-justify">
+  The percentage of {{measure}} hit a peak of {{peakValue}}% in {{peakTime}},
+  when the total number of {{measure}} observations was {{max_count}}.
+  {% if highest_contributing_variable != None %}
+    The most significant factor that fuelled this strong run is the <b>{{highest_contributing_variable}}</b>
+      {% if category_flag == True %}
+        category
+      {% endif%}
+     ,{{highest_contributing_level}}.
+    {% if peakIndex != 0 %}
+      The {{measure}} rate for <b>{{highest_contributing_level}}</b> in {{peakTime}}, increased by over
+      <b>{{highest_contributing_level_increase|round_number}}</b> percentage points ({{highest_contributing_level_range}})
+      compared to rest of the observation period.
+      </p>
+    {% endif %}
+  {% endif %}
+{% endif %}

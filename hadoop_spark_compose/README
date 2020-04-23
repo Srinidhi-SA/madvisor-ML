@@ -1,0 +1,17 @@
+1. Ensure that you have built hadoop and spark images locally with the name hadoop:latest and spark:latest
+2. Edit your /etc/hosts file of the host machine with IP of hadoop host machine and hostname of hadoop container
+3. Edit yarn-site.xml for the value of:
+	<name>yarn.resourcemanager.address</name>
+	<value>{hostname of hadoop container}:8032></value>
+4. Edit core-site.xml for the value of:
+	<name>fs.defaultFS</name>
+	<value>hdfs://{hostname of hadoop container}:9000</value>
+5. Ensure madvisor-api's settings folder is present in the mount path mentioned for spark. By default it should be present in current directory of host machine.		
+6. When running for the first time run the command
+	docker-compose -f hadoop_spark_compose.yml up
+7. When running container goes down due to some error comment following line in start-hadoop.sh to avoid data loss.
+	$HADOOP_HOME/bin/hdfs namenode -format
+8. Inorder to start fresh don't comment the above mentioned name node format line and start normally by removing the data_node and name_node directory created in host machine.
+9. To bring down hadoop and spark container run:
+	docker-compose -f hadoop_spark_compose.yml down
+10. Celery will be started along with the spark container. User has to ensure that correct QUEUE_NAME is mentioned in hadoop_spark_compose.yml file in spark environment properties. 

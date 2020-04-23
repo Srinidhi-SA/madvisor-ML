@@ -1,0 +1,30 @@
+<h3>Score Summary</h3>
+{{blockSplitter}}
+  The model has predicted all {{topLevel["count"]}} observations of {{targetcol}} as {{topLevel["name"]}}.
+{{blockSplitter}}
+<div className='col-md-4 pred_disp_block_store cursor'>
+    <h1 class="text-warning">{{topLevel["percentage"]}}
+      <small>
+         {{topLevel["name"]}}
+      </small>
+    </h1>
+  <p>
+    <b>{{topLevel["count"]}}</b> Observations are predicted to have {{targetcol}} as {{topLevel["name"]}}
+  </p>
+</div>
+{{blockSplitter}}
+
+<div className='col-md-4 pred_disp_block_store cursor'>
+    <h1 class="text-warning">{{secondLevel["percentage"]}}
+      <small>
+        {{secondLevel["name"]}}
+      </small>
+    </h1>
+  <p>
+    {% if nactual == 2 %}
+      <b>{{secondLevel["count"]}}</b> Observations are predicted to have {{targetcol}} as {{secondLevel["name"]}}
+    {% else %}
+      <b>{{secondLevel["count"]}}</b> Predicted for all other sub-levels combined.
+    {% endif %}
+  </p>
+</div>

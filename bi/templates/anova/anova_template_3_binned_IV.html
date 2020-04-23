@@ -1,0 +1,37 @@
+<p class = "txt-justify">
+{% if uniformly_distributed %}
+  {{measure_name}} contribution from each of the {{plural_dimension_name}} seems to be similar.
+{% else %}
+  {% if num_top_groups == 1 %}
+    The <b>top {{plural_dimension_name}}(Segment {{top_groups[0]}})</b> account for about <b>{{top_groups_percent}}%</b> of the total {{measure_name}}.
+  {% elif num_top_groups == 2 %}
+    The <b>top two {{plural_dimension_name}}(Segments {{top_groups[0]}} and {{top_groups[1]}})</b> account for about <b>{{top_groups_percent}}%</b> of the total {{measure_name}}.
+  {% elif num_top_groups == 3 %}
+    The <b>top three {{plural_dimension_name}}(Segments {{top_groups[0]}}, {{top_groups[1]}} and {{top_groups[2]}})</b> account for about <b>{{top_groups_percent}}%</b> of the total {{measure_name}}.
+  {% elif num_top_groups > 3 %}
+    The <b>top {{num_top_groups}} {{plural_dimension_name}}(Segments {{top_groups[0]}}, {{top_groups[1]}}, etc.)</b> account for about <b>{{top_groups_percent}}%</b> of the total {{measure_name}}.
+  {% endif %}
+{% endif %}
+{% if best_category_by_mean==best_category_by_total %}
+  Being the <b>largest contributor</b>, {{plural_dimension_name}} - {{best_category_by_total}} amounts to {{best_category_by_total_sum}} that accounts for about <b>{{best_category_by_total_cont}}% of the total {{measure_name}}</b> and the average {{measure_name}} is {{best_category_by_total_avg}}.
+{% else %}
+  Being the <b>largest contributor</b>, {{plural_dimension_name}} - {{best_category_by_total}}
+  amounts to {{best_category_by_total_sum}} that accounts for about <b>{{best_category_by_total_cont}}%
+  of the total {{measure_name}}</b>.
+  However, {{plural_dimension_name}} - {{best_category_by_mean}} has the <b>highest average</b> {{measure_name}} of {{best_category_by_mean_avg}}, whereas the average for segment {{best_category_by_total}} is {{best_category_by_total_avg}}.
+{% endif %}
+{% if num_groups >= 3 %}
+  {% if not uniformly_distributed %}
+    {% if num_bottom_groups == 1 %}
+      On the other hand, segment {{bottom_groups[0]}} contributes to just {{bottom_groups_percent}}%
+      of the total {{measure_name}}.
+    {% elif num_bottom_groups == 2 %}
+      On the other hand, segments {{bottom_groups[0]}} and {{bottom_groups[1]}} contributes to just
+      {{bottom_groups_percent}}% of the total {{measure_name}}.
+    {% elif num_bottom_groups > 2 %}
+      On the other hand, bottom {{num_bottom_groups}} contributes to just {{bottom_groups_percent}}%
+      of the total {{measure_name}}.
+    {% endif %}
+  {% endif %}
+{% endif %}
+</p>

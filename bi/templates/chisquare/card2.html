@@ -1,0 +1,75 @@
+<p class = "txt-justify">
+{% if second_target_top_dims|length ==2 %}
+  The top {{second_target_top_dims|length}} {{plural_colname}}(segment {{second_target_top_dims[0]}} and segment {{second_target_top_dims[1]}}) account for {{second_target_top_dims_contribution|round(1)}}%
+  of the total {{second_target}} observations.
+{% elif second_target_top_dims|length == 1 %}
+  The top {{colname}}(segment {{second_target_top_dims[0]}}) accounts for {{second_target_top_dims_contribution | round(1)}}%
+  of the total {{second_target}} observations.
+{% elif second_target_top_dims|length > 2 %}
+  The top {{second_target_top_dims|length}} {{plural_colname}}(including segment {{second_target_top_dims[0]}} and segment {{second_target_top_dims[1]}}) account for {{second_target_top_dims_contribution|round(1)}}%
+  of the total {{second_target}} observations.
+{% endif %}
+{% if levels|length == 2 and second_target_top_dims|length >=2 %}
+  {{best_second_target}} amounts to {{best_second_target_count}} that accounts for about {{best_second_target_percent|round(1)}}%
+  of the total {{second_target}} whereas {{worst_second_target}} contributes to just {{worst_second_target_percent|round(2)}}% of the total
+  {{second_target}}.
+{% elif levels|length > 2 and second_target_top_dims|length >=2 %}
+  Being the largest contributor, {{best_second_target}} amounts to {{best_second_target_count|intcomma}}
+  that accounts for about {{best_second_target_percent|round(1)}}% of the total {{second_target}}.
+  On the other hand, {{worst_second_target}} contributes to just {{worst_second_target_percent|round(2)}}% of the total {{second_target}}.
+{% elif levels|length >= 2 %}
+  The segment {{worst_second_target}} contributes to just {{worst_second_target_percent|round(2)}}% of the total {{second_target}}.
+{% endif %}
+</p>
+{% if num_key_factors > 0 %}
+  {{blockSplitter}}
+  <h4>Key Factors influencing {{second_target}} from {{second_target_top_dims[0]}}</h4>
+  {{blockSplitter}}
+  <p class = "txt-justify">
+  {% if random_card2%3 == 0 %}
+    High concentration of {{second_target}} from segment {{second_target_top_dims[0]}} is characterized by the influence of key dimensions, such as {{key_factors}}. Certain specific segments from those factors are more likely to
+    explain segment {{second_target_top_dims[0]}}'s significant rate of {{second_target}}.
+  {% elif random_card2%3 == 1 %}
+    There are some key factors({{key_factors}}) that explain why the concentration of {{second_target}} from segment {{second_target_top_dims[0]}} is very high.
+  {% elif random_card2%3 == 2 %}
+    {{key_factors}}
+    {% if num_key_factors > 1 %}are some of
+    {% elif num_key_factors == 1 %} is one of
+    {% endif %}
+    the most important factors that describe the concentration of {{second_target}} from segment {{second_target_top_dims[0]}} Value category.
+  {% endif %}
+  </p>
+  {{blockSplitter}}
+  <p class = "txt-justify">
+  <ul>
+  {% for dim in distribution_second %}
+    {% if dim['levels'] | length == 1 %}
+    <li>
+      <b>{{dim['d']}}</b>:
+      {% if dim['variation']%2 == 0 %}
+        Among the {{dim['d']|pluralize}}, {{dim['index_txt']}} has got the major chunk of {{second_target}} from segment {{second_target_top_dims[0]}}, accounting for {{dim['contributions'][0] | round(1) }}%.
+      {% elif dim['variation']%2 == 1 %}
+        {{dim['index_txt']}} plays a key role in explaining the high concentration of {{second_target}} from
+        segment {{second_target_top_dims[0]}}. It accounts for {{dim['contributions'][0] | round(1) }}% of total {{second_target}} from segment {{second_target_top_dims[0]}}.
+      {% endif %}
+      The percentage of {{second_target}} for {{dim['levels'][0]}} is {{dim['contributions_percent'][0] | round(1) }}%.
+    </li>
+    {% elif dim['levels'] | length > 1 %}
+    <li>
+      <b>{{dim['d']}}</b>:
+      {% if dim['variation']%3 == 0 %}
+        The top {{dim['levels'] | length}} {{dim['d']|pluralize}}, {{dim['index_txt']}}, account for {{dim['contributions'] | sum | round(1) }}%
+        of the total {{second_target}} observations from segment {{second_target_top_dims[0]}}.
+      {% elif dim['variation']%3 == 1 %}
+        Some of the {{dim['d']|pluralize}}({{dim['index_txt']}}) account for a significant portion of {{second_target}} observations from segment {{second_target_top_dims[0]}}. They cumulatively account for about {{dim['contributions'] | sum | round(1) }}% of the total
+        {{second_target}} from segment {{second_target_top_dims[0]}}.
+      {% elif dim['variation']%3 == 2 %}
+        Among the {{dim['d']|pluralize}}, the top {{dim['levels'] | length}} {{dim['d']|pluralize}}, {{dim['index_txt']}}, contribute to {{dim['contributions'] | sum | round(1) }}% of the total {{second_target}} observations from segment {{second_target_top_dims[0]}}.
+      {% endif %}
+      The percentage of {{second_target}} for {{dim['levels'][0]}} and {{dim['levels'][1]}} are {{dim['contributions_percent'][0] | round(1) }}% and {{dim['contributions_percent'][1] | round(1) }}% respectively.
+    </li>
+    {% endif %}
+    </li>
+  {% endfor %}
+  </p>
+{% endif %}

@@ -1,0 +1,47 @@
+<p class = "txt-justify">
+{% if num_dimensions==num_significant_dimensions %}
+  {% if num_dimensions == 0 %}
+    There are no dimension variables in the dataset.
+  {% elif num_dimensions == 1 %}
+    There is <b>only one dimension</b> in the dataset({{significant_dimensions[0]}}) and
+    it has <b>significant influence</b> on {{target}}.
+  {% elif num_dimensions == 2 %}
+    There are <b>two dimensions</b> in the dataset({{significant_dimensions[0]}} and {{significant_dimensions[1]}}) and
+    both of them have <b>significant influence</b> on {{target}}.
+  {% elif num_dimensions == 3 %}
+    There are <b>three dimensions</b> in the dataset({{significant_dimensions[0]}}, {{significant_dimensions[1]}} and {{significant_dimensions[2]}}) and
+    all three of them have <b>significant influence</b> on {{target}}.
+  {% else %}
+    There are <b>{{num_dimensions}} dimensions</b> in the dataset(including {{significant_dimensions[0]}}, {{significant_dimensions[1]}}, {{significant_dimensions[2]}}, etc.) and all of them have a <b>significant influence</b> on {{target}}.
+  {% endif %}
+{% elif num_significant_dimensions >3 %}
+  There are <b>{{num_dimensions}} dimensions</b> in the dataset and <b>{{num_significant_dimensions}} of them</b>(including {{significant_dimensions[0]}}, {{significant_dimensions[1]}}, {{significant_dimensions[2]}}, etc.) have <b>significant influence</b> on {{target}}.
+{% elif num_significant_dimensions == 3 %}
+  There are <b>{{num_dimensions}} dimensions</b> in the dataset and <b>three of
+  them</b>({{significant_dimensions[0]}}, {{significant_dimensions[1]}} and {{significant_dimensions[2]}}) have <b>significant influence</b> on {{target}}.
+{% elif num_significant_dimensions == 2 %}
+  There are <b>{{num_dimensions}} dimensions</b> in the dataset and <b>two of
+  them</b>(including {{significant_dimensions[0]}} and {{significant_dimensions[1]}}) have <b>significant influence</b> on {{target}}.
+{% elif num_significant_dimensions == 1 %}
+  There are <b>{{num_dimensions}} dimensions</b> in the dataset and <b>only one of
+  them</b>(including {{significant_dimensions[0]}}) has <b>significant influence</b> on {{target}}.
+{% endif %}
+
+{% if num_significant_dimensions > 1 %}
+  It implies that specific categories within each of the dimensions show <b>considerable amount of variation</b> in {{target}}.
+{% elif num_significant_dimensions == 1 %}
+  It implies that specific categories within the dimension shows <b>considerable amount of variation</b> in {{target}}.
+{% endif %}
+
+{% if num_significant_dimensions > 0 %}
+  {% if num_insignificant_dimensions == 1 %}
+    However {{insignificant_dimensions[0]}} don’t show significant difference in {{target}} values across categories.
+  {% elif num_insignificant_dimensions == 2 %}
+    However, other two dimensions({{insignificant_dimensions[0]}} and {{insignificant_dimensions[1]}}), don’t
+    show significant difference in {{target}} values across categories.
+  {% elif num_insignificant_dimensions>2 %}
+    However, other dimensions, such as {{insignificant_dimensions[0]}}, {{insignificant_dimensions[1]}}, etc., don’t
+    show significant difference in {{target}} values across categories.
+  {% endif %}
+{% endif %}
+</p>

@@ -1,0 +1,15 @@
+
+== Python
+
+1) numpy(1.12.1)                    - for numeric calculations
+2) scipy(0.19.0)                    - for statistical functions
+3) pandas(0.20.1)                   - for data frame functions
+4) py4j                             - required for pyspark
+5) statsmodels                      - for conducting statistical tests
+6) pattern(2.6)                     - for generating plurals
+7) statistics                       - for various statistics
+8) scikit-learn(0.18.1)             - for ML algorithms
+9) xgboost                          - for Xgboost algorithm
+10) pyenchant(1.6.8)                - for spell check
+11) python-dateutil(2.6.0)          - for datetime manipulation
+12) humanize(0.5.1)                 - for converting numbers to human readable form

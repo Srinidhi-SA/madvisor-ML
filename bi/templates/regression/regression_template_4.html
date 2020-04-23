@@ -1,0 +1,83 @@
+{{most_significant_dimension}} has significant influence on {{cm}} and
+the impact of {{hsm}} on {{cm}} shows interesting variations across {{most_significant_dimension}}.
+
+{% if num_levels == 2 %}
+  {% if coefficients2[-1]>0 %}
+    {{hsm}} has the highest impact when {{most_significant_dimension}} is  {{levels[-1]}},
+    as {{cm}} increases by {{coefficients2[-1]}} units for every unit increase in {{hsm}}.
+  {% elif coefficients2[-1]<0 %}
+    {{hsm}} has the highest impact when {{cm}} is  {{levels[-1]}},
+    as {{cm}} decreases by {{abs_coeffs2[-1]}} units for every unit increase in {{hsm}}.
+  {% endif %}
+
+  {% if coefficients2 [0] > 0 %}
+    On the other hand, the {{cm}} is least affected by {{hsm}},
+    when {{most_significant_dimension}} is {{levels[0]}}, with an increase of
+    {{abs_coeffs2[0]}} units for one unit increase in {{cm}}.
+  {% elif coefficients2 [0] < 0 %}
+    On the other hand, the {{cm}} is least affected by {{hsm}},
+    when {{most_significant_dimension}} is {{levels[0]}}, with a decrease of
+    {{abs_coeffs2[0]}} units for one unit increase in {{cm}}.
+  {% endif %}
+{% elif num_levels == 3%}
+  {% if coefficients2[-1]>0 and coefficients2[-2]>0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}, as the {{cm}} increases by {{coefficients2[-1]}} units and {{coefficients2[-2]}} units respectively for every unit increase in {{hsm}},
+    when the {{most_significant_dimension}} is {{levels[-1]}} and {{levels[-2]}} respectively.
+  {% elif coefficients2[-1]<0 and coefficients2[-2]<0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}, as the {{cm}} decreases by {{abs_coeffs2[-1]}} units and {{abs_coeffs2[-2]}} units respectively for every unit increase in {{hsm}},
+    when the {{most_significant_dimension}} is {{levels[-1]}} and {{levels[-2]}} respectively.
+  {% elif coefficients2[-1]>0 and coefficients2[-2]<0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}.
+    {{cm}} increases by {{coefficients2[-1]}} units for every unit increase in {{cm}}
+    when {{most_significant_dimension}} is {{levels[-1]}}, and it decreases by {{abs_coeffs2[-2]}} units
+    when {{most_significant_dimension}} is {{levels[-2]}}.
+  {% else %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}.
+    {{cm}} decreases by {{abs_coeffs2[-1]}} units for every unit increase in {{cm}}
+    when {{most_significant_dimension}} is {{levels[-1]}}, and it increases by {{abs_coeffs2[-2]}} units
+    when {{most_significant_dimension}} is {{levels[-2]}}.
+  {% endif %}
+
+  {% if coefficients2 [0] > 0 %}
+    On the other hand, the {{cm}} is least affected by {{hsm}},
+    when {{most_significant_dimension}} is {{levels[0]}}, with an increase of
+    {{abs_coeffs2[0]}} units for one unit increase in {{cm}}.
+  {% elif coefficients2 [0] < 0 %}
+    On the other hand, the {{cm}} is least affected by {{hsm}},
+    when {{most_significant_dimension}} is {{levels[0]}}, with a decrease of
+    {{abs_coeffs2[0]}} units for one unit increase in {{cm}}.
+  {% endif %}
+
+{% elif num_levels > 3 %}
+
+  {% if coefficients2[-1]>0 and coefficients2[-2]>0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}, as the {{cm}} increases by {{coefficients2[-1]}} units and {{coefficients2[-2]}} units respectively for every unit increase in {{hsm}},
+    when the {{most_significant_dimension}} is {{levels[-1]}} and {{levels[-2]}} respectively.
+  {% elif coefficients2[-1]<0 and coefficients2[-2]<0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}, as the {{cm}} decreases by {{abs_coeffs2[-1]}} units and {{abs_coeffs2[-2]}} units respectively for every unit increase in {{hsm}},
+    when the {{most_significant_dimension}} is {{levels[-1]}} and {{levels[-2]}} respectively.
+  {% elif coefficients2[-1]>0 and coefficients2[-2]<0 %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}.
+    {{cm}} increases by {{coefficients2[-1]}} units for every unit increase in {{cm}}
+    when {{most_significant_dimension}} is {{levels[-1]}}, and it decreases by {{abs_coeffs2[-2]}} units
+    when {{most_significant_dimension}} is {{levels[-2]}}.
+  {% else %}
+    The impact of {{hsm}} is significant if the {{most_significant_dimension}}
+    is {{levels[-1]}} and {{levels[-2]}}.
+    {{cm}} decreases by {{abs_coeffs2[-1]}} units for every unit increase in {{cm}}
+    when {{most_significant_dimension}} is {{levels[-1]}}, and it increases by {{abs_coeffs2[-2]}} units
+    when {{most_significant_dimension}} is {{levels[-2]}}.
+  {% endif %}
+
+    On the other hand, the {{cm}} is least affected by {{hsm}},
+    when {{most_significant_dimension}} is {{levels[0]}} or {{levels[1]}}, with a change of
+    {{abs_coeffs2[0]}} units and {{abs_coeffs2[1]}} units for one unit change in {{cm}}.
+
+{% endif %}

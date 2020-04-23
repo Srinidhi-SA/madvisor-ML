@@ -1,0 +1,17 @@
+{% if num_variables ==2 %}
+  {% if num_significant_variables == 2 %}
+    The chart below displays the <b>strength of relationship</b> between {{target_dimension}} and those two key variables, as measured by effect size.
+    Let us take a deeper look at both of them.
+  {% endif %}
+{% elif num_variables > 2%}
+  {% if num_significant_variables == 3 %}
+    The chart below displays the <b>strength of relationship</b> between {{target_dimension}} and those three key variables, as measured by effect size.
+    Let us take a deeper look at all three of them.
+  {% elif num_significant_variables == 2 %}
+    The chart below displays the <b>strength of relationship</b> between {{target_dimension}} and those two key variables, as measured by effect size.
+    Let us take a deeper look at both of them.
+  {% elif num_significant_variables > 3 %}
+    The chart below displays the <b>strength of relationship</b> between {{target_dimension}} and some key variables, as measured by effect size.
+    Let us take a deeper look at them.
+  {% endif %}
+{% endif %}

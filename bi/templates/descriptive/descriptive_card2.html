@@ -1,0 +1,29 @@
+
+{% if skew > 0.1 or skew < -0.1 %}
+  <h2>Concentration of High & Low segments</h2>
+  {{blockSplitter}}
+  <p class = "txt-justify">
+    The top {{q4_cont}}% of the observations (High segment) account for about {{q4_frac}}%
+    of the total {{col_name}} ({{total}}), i.e. {{q4_sum}}.
+  </p>
+  {{blockSplitter}}
+  {{highlightFlag}}
+  <ul>
+    <li>The overall {{col_name}} from the bottom quartile ({{q1_cont}}% of observations
+      low {{col_name}}) amounts to {{q1_sum}}, which is just {{q1_frac}}% of the total.
+    </li>
+    <li>
+      {% if q4_q1_mean != None %}
+        The average {{col_name}} per observations for the top performing
+        segment is {{q4_mean}}, which is {{q4_overall_mean}} times that of the overall
+        average {{col_name}} per observation ({{avg}}) and {{q4_q1_mean}}
+        times that of the mean value from Low segment.
+      {% else %}
+        The average {{col_name}} per observations for the top performing
+        segment is {{q4_mean}}, which is {{q4_overall_mean}} times that of the overall
+        average {{col_name}} per observation ({{avg}}).
+      {% endif %}
+    </li>
+  </ul>
+
+{% endif %}

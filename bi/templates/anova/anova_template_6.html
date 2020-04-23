@@ -1,0 +1,22 @@
+<p class="txt-justify">
+{% if correlation >= 0.85 %}
+  {{target}} contribution from {{top_dimension}} is predominantly in line with the overall {{target}}
+  trend, as the {{dimension}} observed similar ups and downs during the observation period.
+{% elif subset_increase_percent < 0.67*overall_increase_percent %}
+  Despite being the highest contributor to overall {{target}}, {{top_dimension}} growth has underperformed
+  with respect to the overall growth.
+{% elif subset_increase_percent >= 1.5*overall_increase_percent %}
+  The growth rate of {{target}} for {{top_dimension}} has overperformed the overall growth rate.
+{% elif correlation > 0.6 %}
+  {{target}} contribution from {{top_dimension}} is predominantly in line with the overall {{target}} growth.
+{% endif %}
+
+The <b>overall {{target}} figures hit a peak of {{overall_peak_value}}</b> in {{overall_peak_date}},
+when it <b>grew by over {{overall_peak_increase}}%</b> compared to the previous time period.
+
+{% if overall_peak_date==subset_peak_date %}
+  Interestingly, {{top_dimension}}’s {{target}} also peaked at {{subset_peak_value}} during a similar period.
+{% else %}
+  But, {{top_dimension}}’s {{target}}  peaked at {{subset_peak_value}} during {{subset_peak_date}}.
+{% endif %}
+</p>

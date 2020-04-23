@@ -1,0 +1,39 @@
+<p class="txt-justify">
+{% if num_positive_growth_dimensions == 1 %}
+  One {{dimension}}, {{positive_growth_dimensions[0]}}, is the fastest growing in terms of {{target}}
+  at {{positive_growth_values[0]}}% compared to the overall growth of {{overall_growth_rate}}%.
+{% elif num_positive_growth_dimensions == 2 %}
+  {{positive_growth_dimensions[0]}} and {{positive_growth_dimensions[1]}}, are the fastest growing
+  in terms of {{target}} at {{positive_growth_values[0]}}% & {{positive_growth_values[1]}}% respectively
+  compared to the overall average of {{overall_growth_rate}}%.
+{% elif num_positive_growth_dimensions > 2 %}
+  {{num_positive_growth_dimensions}} {{dimension}}, including {{positive_growth_dimensions[0]}} and
+  {{positive_growth_dimensions[1]}}, are the fastest growing in terms of {{target}} at
+  {{positive_growth_values[0]}}% & {{positive_growth_values[1]}}% respectively compared to the
+  overall average of {{overall_growth_rate}}%.
+{% else %}
+  No {{dimension}} showed a significant positive growth during the period.
+{% endif %}
+
+{% if num_negative_growth_dimensions == 1 %}
+  On the other hand, {{negative_growth_dimensions[0]}} has experienced the highest negative growth
+  rate of {{negative_growth_values[0]}}%.
+{% elif num_negative_growth_dimensions == 2 %}
+  On the other hand, {{negative_growth_dimensions[0]}} and {{negative_growth_dimensions[1]}} have experienced the highest
+  negative growth rates of {{negative_growth_values[0]}}% and {{negative_growth_values[1]}}% respectively.
+{% elif num_negative_growth_dimensions > 2 %}
+  On the other hand, {{num_negative_growth_dimensions}} {{dimension}} including, {{negative_growth_dimensions[0]}}
+  and {{negative_growth_dimensions[1]}} have experienced the highest negative growth rates
+  of {{negative_growth_values[0]}}% and {{negative_growth_values[1]}}% respectively.
+{% endif %}
+
+{% if num_stable_growth_dimensions == 1 %}
+  Finally, {{stable_growth_dimensions[0]}} didn’t experience any growth nor decline.
+{% elif num_stable_growth_dimensions == 2 %}
+  Finally, there are {{num_stable_growth_dimensions}} {{dimension}} which didn’t experience any
+  growth nor decline, which are {{stable_growth_dimensions[0]}} and {{stable_growth_dimensions[1]}}.
+{% elif num_stable_growth_dimensions > 2 %}
+  Finally, there are {{num_stable_growth_dimensions}} {{dimension}} which didn’t experience any
+  growth nor decline, including {{stable_growth_dimensions[0]}} and {{stable_growth_dimensions[1]}}.
+{% endif %}
+</p>

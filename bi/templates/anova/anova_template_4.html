@@ -1,0 +1,135 @@
+<p class = "txt-justify">
+{% if num_sig_dims==1 %}
+  High contribution of {{target}} from {{top_level}} is characterized by the influence of {{sig_dims[0]}}. Certain specific segment from {{sig_dims[0]}} is more likely to explain {{top_level}}'s significant {{target}} turnover.
+
+<!--   {% if contributorDict[sig_dims[0]]["level"]|length ==1 %}
+    For instance,{{contributorDict[sig_dims[0]]["level"][0][0]}}, the <b>top performing {{sig_dims[0]}} account
+    for {{contributorDict[sig_dims[0]]["level"][0][1]}}%</b> of the overall {{target}} from {{top_level}}.
+  {% elif contributorDict[sig_dims[0]]["level"]|length==2 %}
+    For instance, {{contributorDict[sig_dims[0]]["level"][0][0]}}({{contributorDict[sig_dims[0]]["level"][0][1]}}%) along with
+    {{contributorDict[sig_dims[0]]["level"][1][0]}}({{contributorDict[sig_dims[0]]["level"][1][1]}}%),
+    the <b>top performing {{sig_dims[0]}}
+    account for {{contributorDict[sig_dims[0]]["total"]}}%</b> of the overall {{target}} from {{top_level}}.
+  {% elif contributorDict[sig_dims[0]]["level"]|length>2 %}
+    For instance, the top {{contributorDict[sig_dims[0]]["level"]|length}} <b>{{sig_dims[0]}} account for
+    {{contributorDict[sig_dims[0]]["total"]}}%</b> of the overall {{target}} from {{top_level}}.
+  {%endif%} -->
+
+{% elif num_sig_dims==2 %}
+  High contribution of {{target}} from {{top_level}} is characterized by the influence of key dimensions - {{sig_dims[0]}} and {{sig_dims[1]}}. Certain specific segment from those dimensions are more likely to explain {{top_level}}'s significant {{target}} turnover.
+<!-- 
+  {% if contributorDict[sig_dims[1]]["level"]|length==1 %}
+    In terms of {{sig_dims[1]}}, {{contributorDict[sig_dims[1]]["level"][0][0]}} account
+    for {{contributorDict[sig_dims[1]]["level"][0][1]}}% of the total {{target}} from {{top_level}}.
+  {% elif contributorDict[sig_dims[1]]["level"]==2 %}
+    In terms of {{sig_dims[1]}}, {{contributorDict[sig_dims[1]]["level"][0][0]}}({{contributorDict[sig_dims[1]]["level"][0][1]}}%)
+    and {{contributorDict[sig_dims[1]]["level"][1][0]}}({{contributorDict[sig_dims[1]]["level"][1][1]}}%) account for {{contributorDict[sig_dims[0]]["total"]}}%
+    of the total {{target}} from {{top_level}}.
+  {% elif contributorDict[sig_dims[1]]["level"]>2 %}
+    In terms of {{sig_dims[1]}}, top {{contributorDict[sig_dims[1]]["level"]|length}} account for
+    {{contributorDict[sig_dims[1]]["total"]}}% of the total {{target}} from {{top_level}}.
+  {%endif%} -->
+
+{% elif num_sig_dims >2 %}
+  High contribution of {{target}} from {{top_level}} is characterized by the influence of key dimensions, such as {{sig_dims[0]}}, {{sig_dims[1]}}, and {{sig_dims[2]}}. Certain specific segment from those dimensions are more likely to explain {{top_level}}'s significant {{target}} turnover.
+<!-- 
+  {% if contributorDict[sig_dims[2]]["level"]|length==1 %}
+    Among the {{sig_dims[2]}}, {{contributorDict[sig_dims[2]]["level"][0][0]}} has got the major chunk
+    of {{target}} from {{top_level}}, accounting for {{contributorDict[sig_dims[2]]["level"][0][1]}}%.
+  {% elif contributorDict[sig_dims[2]]["level"]|length==2 %}
+    Among the {{sig_dims[2]}}, {{contributorDict[sig_dims[2]]["level"][0][0]}} and {{contributorDict[sig_dims[2]]["level"][1][1]}}
+    has got the major chunk of {{target}} from {{top_level}}, accounting for {{contributorDict[sig_dims[2]]["total"]}}%.
+  {% elif contributorDict[sig_dims[2]]["level"]|length > 2 %}
+    Also, the top {{contributorDict[sig_dims[0]]["level"]|length}} {{sig_dims[2]}} contribute to
+    {{contributorDict[sig_dims[0]]["total"]}}% of {{target}} from {{top_level}}.
+  {% endif %} -->
+
+{% endif %}
+
+</p>
+
+{{blockSplitter}}
+{{highlightFlag}}
+
+{% if num_sig_dims == 1 %}
+  {% if contributorDict[sig_dims[0]]["level"]|length == 1 %}
+    <ul>
+      <li>{{sig_dims[0]}} - The top performing {{sig_dims[0]}} - {{contributorDict[sig_dims[0]]["level"][0][0]}} accounts for {{contributorDict[sig_dims[0]]["level"][0][1]}}% of overall {{target}} from {{top_level}}.
+      </li>
+    </ul>
+  {% elif contributorDict[sig_dims[0]]["level"]|length == 2 %}
+    <ul>
+      <li>
+        {{sig_dims[0]}} - {{contributorDict[sig_dims[0]]["level"][0][0]}} along with {{contributorDict[sig_dims[0]]["level"][1][0]}}, the top performing {{sig_dims[0]}} account for {{contributorDict[sig_dims[0]]["total"]}}% of the overall {{target}} from {{top_level}}.
+      </li>
+    </ul>
+  {% elif contributorDict[sig_dims[0]]["level"]|length > 2 %}
+    <ul>
+      <li>
+        {{sig_dims[0]}} - The top {{contributorDict[sig_dims[0]]["level"]|length}} {{sig_dims[0]}} account for {{contributorDict[sig_dims[0]]["total"]}}% of the {{target}} from {{top_level}}.
+      </li>
+    </ul>
+  {%endif%}
+
+{% elif num_sig_dims == 2 %}
+  {% if contributorDict[sig_dims[1]]["level"]|length == 1 %}
+    <ul>
+      <li>{{sig_dims[1]}} - The top performing {{sig_dims[1]}} - {{contributorDict[sig_dims[1]]["level"][0][0]}} accounts for {{contributorDict[sig_dims[1]]["level"][0][1]}}% of overall {{target}} from {{top_level}}.
+      </li>
+      <li>{{sig_dims[0]}} - Among {{sig_dims[0]}}, {{contributorDict[sig_dims[0]]["level"][0][0]}} accounts for {{contributorDict[sig_dims[0]]["level"][0][1]}}% of the total {{target}}.
+      </li>      
+    </ul>
+  {% elif contributorDict[sig_dims[1]]["level"]|length == 2 %}
+    <ul>
+      <li>
+        {{sig_dims[1]}} - {{contributorDict[sig_dims[1]]["level"][0][0]}} along with {{contributorDict[sig_dims[1]]["level"][1][0]}}, the top performing {{sig_dims[1]}} account for  {{contributorDict[sig_dims[1]]["total"]}}% of the overall {{target}} from {{top_level}}.
+      </li>
+      <li>
+        {{sig_dims[0]}} - Among the {{sig_dims[0]}}, {{contributorDict[sig_dims[0]]["level"][0][0]}} and {{contributorDict[sig_dims[0]]["level"][1][0]}}, account for {{contributorDict[sig_dims[0]]["total"]}}% of the total {{target}}.
+      </li>
+    </ul>
+  {% elif contributorDict[sig_dims[1]]["level"]|length > 2 %}
+    <ul>
+      <li>
+        {{sig_dims[1]}} - The top {{contributorDict[sig_dims[1]]["level"]|length}} {{sig_dims[1]}} account for {{contributorDict[sig_dims[1]]["total"]}}% of the {{target}} from {{top_level}}. 
+      </li>
+      <li>
+        {{sig_dims[0]}} - Among the {{sig_dims[0]}}, top {{contributorDict[sig_dims[0]]["level"]|length}} {{sig_dims[0]}} account for {{contributorDict[sig_dims[0]]["total"]}}% of the total {{target}}.
+      </li>
+    </ul>
+  {%endif%}
+
+{% elif num_sig_dims>2 %}
+  {% if contributorDict[sig_dims[2]]["level"]|length == 1 %}
+    <ul>
+      <li>
+        {{sig_dims[2]}} - The top performing {{sig_dims[2]}} - {{contributorDict[sig_dims[2]]["level"][0][0]}} accounts for {{contributorDict[sig_dims[2]]["level"][0][1]}}% of overall {{target}} from {{top_level}}.
+      </li>
+      <li>
+        {{sig_dims[1]}} - Among the {{sig_dims[1]}}, {{contributorDict[sig_dims[1]]["level"][0][0]}} accounts for {{contributorDict[sig_dims[1]]["level"][1][0]}}% of the total {{target}}.
+      </li>
+    </ul>
+  {% elif contributorDict[sig_dims[2]]["level"]|length == 2 %}
+    <ul>
+      <li>
+        {{sig_dims[2]}} - {{contributorDict[sig_dims[2]]["level"][0][0]}} along with {{contributorDict[sig_dims[2]]["level"][1][0]}}, the top performing {{sig_dims[2]}} account for  {{contributorDict[sig_dims[2]]["total"]}}% of the overall {{target}} from {{top_level}}.
+      </li>
+      <li>
+        {{sig_dims[1]}} - Among the {{sig_dims[1]}}, {{contributorDict[sig_dims[1]]["level"][0][0]}} and {{contributorDict[sig_dims[1]]["level"][1][0]}}, account for {{contributorDict[sig_dims[1]]["total"]}}% of the total {{target}}.
+      </li>
+    </ul>
+  {% elif contributorDict[sig_dims[2]]["level"]|length > 2 %}
+    <ul>
+      <li>
+        {{sig_dims[2]}} - The top {{contributorDict[sig_dims[2]]["level"]|length}} {{sig_dims[2]}} account for {{contributorDict[sig_dims[2]]["total"]}}% of the {{target}} from {{top_level}}.
+      </li>
+      <li>
+        {{sig_dims[1]}} - Among the {{sig_dims[1]}}, top {{contributorDict[sig_dims[1]]["level"]|length}} {{sig_dims[1]}} account for {{contributorDict[sig_dims[1]]["total"]}}% of the total {{target}}.
+      </li>
+      <li>
+        {{sig_dims[0]}} - Among the {{sig_dims[0]}}, {{contributorDict[sig_dims[0]]["level"][0][0]}} has got the major chunk of {{target}} from {{top_level}}, accounting for {{contributorDict[sig_dims[0]]["level"][0][1]}}%.
+      </li> 
+    </ul>
+  {%endif%}
+
+{% endif %}

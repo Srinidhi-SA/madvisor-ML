@@ -1,0 +1,23 @@
+<p class="txt-justify">
+{% if keys|length == 1 %}
+  The {{colname}} variable has only one value, i.e. {{keys[0]}}.
+{% elif keys|length == 2 and n_uniq == 1  %}
+  The {{colname}} variable has only two values, i.e. {{keys[0]}} and {{keys[1]}}.
+  Both the {{plural_colname}} have the same number of observations i.e {{max['val']|intcomma}}.
+{% elif keys|length == 2 and n_uniq != 1  %}
+  The {{colname}} variable has only two values, i.e. {{keys[0]}} and {{keys[1]}}.
+  {{max['key']}} is the <b>largest</b> with {{max['val']|intcomma}} observations, whereas {{min['key']}} is the <b>smallest</b> with just {{min['val']|intcomma}} observations.
+{% elif keys|length == 3 and n_uniq == 1  %}
+  The {{colname}} variable has only three observations, which are {{keys[0]}}, {{keys[1]}} and {{keys[2]}}.
+  All the {{plural_colname}} have the same number of observations i.e {{max['val']|intcomma}}.
+{% elif keys|length == 2 and n_uniq != 1  %}
+  The {{colname}} variable has only three observations, which are {{keys[0]}}, {{keys[1]}} and {{keys[2]}}.
+  {{max['key']}} is the <b>largest</b> with {{max['val']|intcomma}} observations, whereas {{min['key']}} is the <b>smallest</b> with just {{min['val']|intcomma}} observations.
+{% elif keys|length > 3 and n_uniq == 1 %}
+  There are {{keys|length|intcomma}} {{plural_colname}} in the dataset.
+  All the {{plural_colname}} have the same number of observations i.e {{max['val']|intcomma}}
+{% elif keys|length > 3 and n_uniq != 1  %}
+  There are {{keys|length|intcomma}} {{plural_colname}} in the dataset.
+  {{max['key']}} is the <b>largest</b> with {{max['val']|intcomma}} observations, whereas {{min['key']}} is the <b>smallest</b> with just {{min['val']|intcomma}} observations.
+{% endif %}
+</p>

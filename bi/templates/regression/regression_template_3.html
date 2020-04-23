@@ -1,0 +1,69 @@
+{% if cc >= -1 and cc <= -0.7 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+   the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>negatively but weakly correlated</b> with the {{cm}} figures.
+  When {{hsm}} changes, {{cm}} tends to move in the opposite direction (to a remarkable extent).
+  For every unit increase in {{hsm}} we can expect {{cm}} to <b>decrease by an average of {{beta}} units</b>.
+{% elif cc > -0.7 and cc <= -0.3 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+   the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>negatively and moderately correlated</b> with the {{cm}} figures.
+  When {{hsm}} changes, {{cm}} tends to move in the opposite direction (though not quite significant).
+  For every unit increase in {{hsm}} we can expect {{cm}} to <b>decrease by an average of {{beta}} units</b>.
+{% elif cc > -0.3 and cc <= 0 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+    the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>negatively and strongly correlated</b> with the {{cm}} figures.
+  When {{hsm}} changes, {{cm}} tends to move in the opposite direction (only subtle change).
+  For every unit increase in {{hsm}} we can expect {{cm}} to <b>decrease by an average of {{beta}} units</b>.
+{% elif cc > 0 and cc <= 0.3 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+    the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>positively but weakly correlated</b> with the {{cm}} figures.
+  As {{hsm}} changes, {{cm}} also tends to move in the same direction (only subtle change).
+  {% if beta >0 %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average increase of {{cm}} by {{beta|abs}} units</b>.
+  {% else %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average decrease of {{cm}} by {{beta|abs}} units</b>.
+  {% endif %}
+{% elif cc > 0.3 and cc <= 0.7 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+   the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>positively and moderately correlated</b> with the {{cm}} figures.
+  As {{hsm}} changes, {{cm}} also tends to move in the same direction (though not quite significant).
+  {% if beta >0 %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average increase of {{cm}} by {{beta|abs}} units</b>.
+  {% else %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average decrease of {{cm}} by {{beta|abs}} units</b>.
+  {% endif %}
+{% elif cc > 0.7 and cc <= 1 %}
+  {{hsm}} is
+  {% if hsm == msc %}<b>by far
+  {% else %} <b>one of
+  {% endif %}
+    the most significant influencer</b> of {{cm}} and it explains a great magnitude of change in {{cm}}.
+  It is <b>positively and strongly correlated</b> with the {{cm}} figures.
+  As {{hsm}} changes, {{cm}} also tends to move in the same direction (to a remarkable extent).
+  {% if beta >0 %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average increase of {{cm}} by {{beta|abs}} units</b>.
+  {% else %}
+    An incremental unit change in {{hsm}} corresponds to an <b>average decrease of {{cm}} by {{beta|abs}} units</b>.
+  {% endif %}
+{% endif %}
+
+    

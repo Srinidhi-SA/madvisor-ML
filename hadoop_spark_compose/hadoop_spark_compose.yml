@@ -1,0 +1,42 @@
+version: '2.1'
+services:
+  hadoop:
+     image: hadoop:latest
+     hostname: hadoop
+     ports:
+       - "9000:9000"
+       - "8088:8088"
+       - "9870:9870"
+       - "9864:9864"
+       - "19888:19888"
+       - "8042:8042"
+       - "8888:8888"
+       - "8032:8032"
+     volumes:
+       - "${PWD}/start-hadoop.sh:/tmp/start/start-hadoop.sh"
+       - "./data_node:/tmp/data_node:rw"
+       - "./name_node:/tmp/name_node:rw" 
+     networks:
+       - mysql_api_redis_nginx_compose_default
+  spark:
+     image: spark:latest
+     hostname: spark
+     ports:
+       - "8080:8080"
+       - "4040:4040"
+     environment:
+      - QUEUE_NAME=luke
+     volumes:
+       - "${PWD}/../model/:/root/mAdvisorModels/:rw"
+       - "${PWD}/../score/:/root/mAdvisorScores/:rw"
+       - "/etc/hosts:/etc/hosts:rw"
+       - "./settings/:/home/mAdvisor/mAdvisor-api/config/settings/"
+       - "./hadoop_conf/:/home/mAdvisor/mAdvisor-api/hadoop_conf/:rw"
+       - "./spark_conf/:/tmp/"
+       - "./hive-site.xml:/usr/local/spark-2.3.0-bin-hadoop2.7/conf/hive-site.xml" 
+     restart: always
+     networks:
+       - mysql_api_redis_nginx_compose_default
+networks:
+  mysql_api_redis_nginx_compose_default:
+    external: true

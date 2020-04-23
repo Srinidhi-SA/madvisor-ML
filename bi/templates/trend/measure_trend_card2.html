@@ -1,0 +1,139 @@
+<h3>Highest and Lowest Points of {{measure}}</h3>
+{{blockSplitter}}
+<p class="txt-justify">
+  {% if peakStreakDuration >= 2%}
+    The {{measure}} figures hit a peak of {{peakValue|round_number}} in {{peakTime}}, which resulted after
+    <b>a continuous streak of growth for {{peakStreakDuration}} {{dataLevel}}s </b> ending at {{peakTime}}.
+  {% else %}
+    The {{measure}} figures hit a peak of {{peakValue|round_number}} in {{peakTime}}.
+  {% endif %}
+  {% if highest_contributing_variable != None %}
+    The most significant factor that fuelled this strong run is the {{highest_contributing_variable}}, {{highest_contributing_level}}.
+    {{measure}} contribution from {{highest_contributing_level}} in {{peakTime}}, increased by over
+    {{highest_contributing_level_increase|round_number}} percentage points ({{highest_contributing_level_range}})
+    compared to rest of the observation period.
+  {% endif %}
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+  However, there are also few {{dataLevel}}s when {{measure}} was lagging and didn't do very well.
+  {% if lowStreakDuration >= 2%}
+    The most notable among them was {{lowestTime}} and values for {{measure}} dropped to {{lowestValue|round_number}}
+    from {{lowStreakBeginValue|round_number}} in {{lowStreakBeginMonth}}.
+  {% else %}
+    The most notable among them was {{lowestTime}} and values for {{measure}} dropped to {{lowestValue|round_number}}.
+  {% endif %}
+  {% if lowest_contributing_variable != None %}
+     This was primarily due to <b>sharp decline in {{measure}} from {{lowest_contributing_level}}
+     {{lowest_contributing_variable}}</b>, which observed a decline of over
+      {{lowest_contributing_level_decrease|round_number}} percentage points ({{lowest_contributing_level_range}}).
+  {% endif %}
+</p>
+
+{{blockSplitter}}
+  {#
+  {% if significant_dimensions|length >0 %}
+  {% if HighestSigDimension %}
+    <h4>Significant factors that drive increase in {{measure}}</h4>
+    {{blockSplitter}}
+    <p class="txt-justify">
+      <ul>
+        <li>
+          {% if HighestSigDimensionL2[1] > 0%}
+            {{HighestSigDimension}} has been very instrumental in driving {{measure}} growth,
+             as {{HighestSigDimensionL1[0]}} and {{HighestSigDimensionL2[0]}} witnessed the highest
+             overall growth rates of {{HighestSigDimensionL1[1]|round_number}}% and {{HighestSigDimensionL2[1]|round_number}}% respectively.
+          {% else %}
+            {{HighestSigDimension}} has been very instrumental in driving {{measure}} growth,
+            as {{HighestSigDimensionL1[0]}} witnessed the highest overall growth rates of {{HighestSigDimensionL1[1]|round_number}}% .
+          {% endif %}
+        </li>
+      </ul>
+  {% endif %}
+{% endif %}
+#}
+
+  {% if significant_dimensions|length >0 %}
+    {% if posGrowthArray|length > 0 %}
+      <h4>Significant factors that drive increase in {{measure}}</h4>
+      {{blockSplitter}}
+      <p class="txt-justify">
+        <ul>
+          <li>
+            {% if posGrowthArray|length > 1%}
+              {# when top 2 are from same dimension#}
+              {% if posGrowthArray[0][0][0] == posGrowthArray[1][0][0]%}
+                {{posGrowthArray[0][0][0]}} has been very instrumental in driving {{measure}} growth,
+                 as {{posGrowthArray[0][0][1]}} and {{posGrowthArray[1][0][1]}} witnessed the highest
+                 overall growth rates of {{posGrowthArray[0][1]["growth"]|round_number}}% and {{posGrowthArray[1][1]["growth"]|round_number}}% respectively.
+              {% else %}
+                {# when top 2 are from different dimension#}
+                {{posGrowthArray[0][0][0]}} and {{posGrowthArray[1][0][0]}} have been very instrumental in driving {{measure}} growth,
+                as their respective levels {{posGrowthArray[0][0][1]}} and {{posGrowthArray[1][0][1]}} witnessed the highest
+                overall growth rates of {{posGrowthArray[0][1]["growth"]|round_number}}% and {{posGrowthArray[1][1]["growth"]|round_number}}% respectively.
+              {% endif %}
+            {% else %}
+              {{posGrowthArray[0][0][0]}} has been very instrumental in driving {{measure}} growth,
+              as {{posGrowthArray[0][0][1]}} witnessed the highest overall growth rates of {{posGrowthArray[0][1]["growth"]|round_number}}% .
+            {% endif %}
+          </li>
+        </ul>
+      </p>
+    {% endif %}
+
+    {{blockSplitter}}
+    {#
+    {% if negativeHighestSigDimension %}
+      <h4>Significant factors that drag {{measure}} down</h4>
+      {{blockSplitter}}
+        <ul>
+          <li>
+            {{negativeHighestSigDimension}} has been an area of concern,
+            {% if negativeHighestSigDimensionL1 != None and negativeHighestSigDimensionL2 != None %}
+              as {{negativeHighestSigDimensionL1[0]}} and {{negativeHighestSigDimensionL2[0]}}
+               shrunk over {{negativeHighestSigDimensionL1[1]}}% and {{negativeHighestSigDimensionL2[1]}}% respectively.
+            {% elif negativeHighestSigDimensionL1 != None %}
+              as {{negativeHighestSigDimensionL1[0]}} shrunk over {{negativeHighestSigDimensionL1[1]}}%.
+            {% elif negativeHighestSigDimensionL2 != None %}
+              as {{negativeHighestSigDimensionL2[0]}} shrunk over {{negativeHighestSigDimensionL2[1]}}%.
+            {% endif %}
+          </li>
+            {% if negativeHighestSigDimension != negativeSecondHighestSigDimension %}
+              <li>
+                {{negativeSecondHighestSigDimension}} has been an area of concern,
+                as {{negativeSecondHighestSigDimensionL1[0]}} and {{negativeSecondHighestSigDimensionL2[0]}}
+                 shrunk over {{negativeSecondHighestSigDimensionL1[1]}}% and {{negativeSecondHighestSigDimensionL2[1]}}% respectively.
+              </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    #}
+
+    {% if negGrowthArray|length > 0 %}
+      <h4>Significant factors that drag {{measure}} down</h4>
+      {{blockSplitter}}
+      <p class="txt-justify">
+        <ul>
+          <li>
+            {% if negGrowthArray|length > 1%}
+              {# when top 2 are from same dimension#}
+              {% if negGrowthArray[0][0][0] == negGrowthArray[1][0][0]%}
+                {{negGrowthArray[0][0][0]}} has been an area of concern,
+                as {{negGrowthArray[0][0][1]}} and {{negGrowthArray[1][0][1]}}
+                shrunk over {{negGrowthArray[0][1]["growth"]|abs|round_number}}% and {{negGrowthArray[1][1]["growth"]|abs|round_number}}% respectively.
+              {% else %}
+                {# when top 2 are from different dimension#}
+                {{negGrowthArray[0][0][0]}} and {{negGrowthArray[1][0][0]}} have been an area of concern,
+                as their respective levels {{negGrowthArray[0][0][1]}} and {{negGrowthArray[1][0][1]}}
+                shrunk by {{negGrowthArray[0][1]["growth"]|abs|round_number}}% and {{negGrowthArray[1][1]["growth"]|abs|round_number}}% respectively.
+              {% endif %}
+            {% else %}
+              {{negGrowthArray[0][0][0]}} has been an area of concern
+              as {{negGrowthArray[0][0][1]}} shrunk by {{negGrowthArray[0][1]["growth"]|abs|round_number}}% .
+            {% endif %}
+          </li>
+        </ul>
+      </p>
+    {% endif %}
+
+  {% endif %}

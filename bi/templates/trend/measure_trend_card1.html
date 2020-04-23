@@ -1,0 +1,48 @@
+<h3>How {{measure}} is Changing over Time</h3>
+{{blockSplitter}}
+<p class="txt-justify">
+  This section provides insights on how {{measure}} is performing over time and
+  captures the most significant moments that defined the overall pattern or trend
+  over the observation period.
+</p>
+{{blockSplitter}}
+<p class="txt-justify">
+  The dataset contains {{measure}} figures for a <b>{{durationString}}</b> period.
+{% if overall_growth > 0 %}
+  The values of {{measure}} have <b> grown by {{overall_growth|abs}}% </b> during
+  the same time, from {{start_value|round_number}} in {{start_time}} to
+  {{end_value|round_number}} in {{end_time}}.
+{% elif overall_growth <= 0 %}
+  The values of {{measure}} have <b> dropped by {{overall_growth|abs}}% </b> during
+  the same time, from {{start_value|round_number}} in {{start_time}} to
+  {{end_value|round_number}} in {{end_time}}.
+{% endif %}
+  The total {{measure}} </b> were {{total|round_number}} for the last {{durationString}},
+  with the <b> average {{measure}} per {{dataLevel}} being {{average_value|round_number}}</b>.
+</p>
+
+{{blockSplitter}}
+<p class="txt-justify">
+{% if trend == "positive" %}
+  Driven by the strong increase, {{measure}} seems to be on <b> positive trend </b>
+  which is statistically significant.
+{% elif trend == "negative" %}
+  Driven by the marginal decrease, {{measure}} seem to be on <b> negative trend </b>
+  which is statistically significant.
+{% else %}
+  Despite <b> {{overall_growth_text}} </b> , there is <b>no trend</b> in the data.
+{% endif %}
+{% if seasonality != True %}
+  However, the {{measure}} figures are <b> unlikely to follow a seasonal pattern </b> during this period.
+{% else %}
+  However, the {{measure}} figures are <b> likely to follow a seasonal pattern </b> during this period.
+{% endif %}
+</p>
+
+
+{{blockSplitter}}
+{{highlightFlag}}
+
+{% if ratio_string != "" %}
+  The total {{measures}} contribution from the streak of {{bucket_length}} {{dataLevel}}s ({{bucket_duration}}) amounts to a total of {{bucket_contribution}}, which is almost {{ratio_string}} of the overall {{measure}} for the {{durationString}} period.
+{% endif %}

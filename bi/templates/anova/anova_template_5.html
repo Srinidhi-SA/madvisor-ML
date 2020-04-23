@@ -1,0 +1,33 @@
+<p class = "txt-justify">
+{% if num_leaders_club==1 %}
+  <b>Leaders Club</b> -  Only 1 {{dimension}}, {{leaders_club[0]}}, feature in the Leaders Club signalling healthy trend in terms of revenue contribution as well as growth.
+{% elif num_leaders_club==2 %}
+  <b>Leaders Club</b> -  Total of 2 {{dimension|pluralize}}, {{leaders_club[0]}} and {{leaders_club[1]}}, feature in the Leaders Club signalling healthy trend in terms of revenue contribution as well as growth.
+{% elif num_leaders_club>2 %}
+  <b>Leaders Club</b> -  Total of {{num_leaders_club}} {{dimension|pluralize}}, including {{leaders_club[0]}}, {{leaders_club[1]}}, etc., feature in the Leaders Club signalling healthy trend in terms of revenue contribution as well as growth.
+{% endif %}
+<br>
+{% if num_opportunity_bay == 1 %}
+  <b>Opportunity Bay</b> - {{opportunity_bay[0]}} feature in this quadrant implying that there is good potential for revenue growth, even though their current {{target}} contributions are relatively less.
+{% elif num_opportunity_bay == 2 %}
+  <b>Opportunity Bay</b> - {{opportunity_bay[0]}} and {{opportunity_bay[1]}} feature in this quadrant implying that there is good potential for revenue growth, even though their current {{target}} contributions are relatively less.
+{% elif num_opportunity_bay > 2 %}
+  <b>Opportunity Bay</b> - {{num_opportunity_bay}} {{dimension|pluralize}}, including {{opportunity_bay[0]}}, {{opportunity_bay[1]}}, etc., feature in this quadrant implying that there is good potential for revenue growth, even though their current {{target}} contributions are relatively less.
+{% endif %}
+<br>
+{% if num_playing_safe == 1 %}
+  <b>Playing Safe</b> - Only {{playing_safe[0]}} feature in this quadrant which is characterized by high level of {{target}} but low rates of growth.
+{% elif num_playing_safe == 2 %}
+  <b>Playing Safe</b> - There are {{num_playing_safe}} {{dimension|pluralize}}, {{playing_safe[0]}} and {{playing_safe[1]}} are featuring in this quadrant which is characterized by high level of {{target}} but low rates of growth.
+{% elif num_playing_safe > 2 %}
+  <b>Playing Safe</b> - There are {{num_playing_safe}} {{dimension|pluralize}}, including {{playing_safe[0]}}, {{playing_safe[1]}} and {{playing_safe[2]}} are featuring in this quadrant which is characterized by high level of {{target}} but low rates of growth.
+{% endif %}
+<br>
+{% if num_red_alert == 1 %}
+  <b>Red Alert</b> - {{red_alert[0]}} is not performing well both in terms of {{target}} contribution and growth.
+{% elif num_red_alert == 2 %}
+  <b>Red Alert</b> - {{red_alert[0]}} and {{red_alert[1]}} are not performing well both in terms of {{target}} contribution and growth.
+{% elif num_red_alert > 2 %}
+  <b>Red Alert</b> - {{num_red_alert}} {{dimension|pluralize}}, including {{red_alert[0]}}, {{red_alert[1]}} and {{red_alert[2]}} are not performing well both in terms of {{target}} contribution and growth.
+{% endif %}
+</p>

@@ -1,0 +1,81 @@
+{# n_o_m = number of measures column
+   cm = chosen measure
+   n_s_m = number of significant measure
+   n_ns_m = number of non significant measures
+   sm = significant measure list
+   om =  other measures list
+   nsm = significant measure list
+ #}
+{% if n_o_m == 1 %} There is only <b>one measure</b> in the dataset
+  {% if n_s_m == 0 %}
+    and it <b>does not have
+  {% else %}
+    and it <b>has
+  {% endif %}
+{% elif n_o_m == 2 %}  There are just <b>two measures<b> in the dataset
+  {% if n_s_m == 0 %}
+    and they <b>do not have
+  {% elif n_s_m == 1 %}
+    and only {{sm[0]}} has
+  {% else %}
+    but both of them ({{om[0]}} and {{om[1]}}) <b>have
+  {% endif %}
+{% elif n_o_m > 2 %}
+  There are {{n_o_m}} measures in the dataset
+  {% if n_s_m == 0 %}
+    and <b>none of them have any
+  {% elif n_s_m == 1 %}
+    and only <b>{{sm[0]}} has
+  {% elif n_ns_m == 0 %}
+    and <b>all of them have
+  {% else %}
+    and <b>{{n_s_m}} of them have
+  {% endif %}
+{% endif %}
+significant influence</b> on {{cm}}. 
+
+{% if n_s_m > 0 %}
+  It implies that
+{% if n_o_m == 1 %}
+  {% if n_s_m == 0 %}
+    {{om[0]}} <b>doesn't explain
+  {% else %}
+    {{sm[0]}} <b>explains
+  {% endif %}
+{% elif n_o_m == 2%}
+  {% if n_s_m == 0 %}
+    these measures <b>do not explain
+  {% elif n_s_m == 1 %}
+    <b>{{om[0]}} explains
+  {% else %}
+    these measures <b>explain
+  {% endif %}
+{% else %}
+  these measures <b>explain
+{% endif %}
+ considerable amount of variation</b> in {{cm}}.
+ {% endif %}
+
+{% if n_o_m >= 2 and n_ns_m > 0 %}
+  {% if n_s_m >= 1 %}
+    {% if n_ns_m == 1 %}
+      However {{nsm[0]}} doesn't show significant relationship with {{cm}}.
+    {% elif n_ns_m == 2 %}
+      However, {{nsm[0]}} and {{nsm[1]}} do not show significant relationship with {{cm}}.
+    {% elif n_ns_m == 3 %}
+      However, other measures ({{nsm[0]}},{{nsm[1]}} and {{nsm[2]}}) do not show significant relationship with {{cm}}.
+    {% else %}
+      However, other measures (including {{nsm[0]}},{{nsm[1]}}, etc..) do not show significant relationship with {{cm}}.
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% if n_s_m == 0 %}
+  It doesn't seem to have significant relationship with any measures.
+{% elif n_s_m == 1 %}
+  It seems to have significant relationship only with {{sm[0]}}.
+{% elif n_ns_m == 2 %}
+  It seems to have significant relationship with {{sm[0]}} and {{sm[1]}}.
+{% else %}
+  It seems to have significant relationship with {{sm[0]}},{{sm[1]}} and {{sm|length-2}} other measures.
+{% endif %}

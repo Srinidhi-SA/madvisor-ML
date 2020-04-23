@@ -1,0 +1,27 @@
+<h3>Predicting the Drivers of {{dimension_name}}</h3>
+{{blockSplitter}}
+{% for target in rules %}
+  {% if significant_vars[target]|length >= 1 %}
+    <h4>{{target}}</h4>
+  {% endif %}
+  {{blockSplitter}}
+  <p class = "txt-justify">
+  {% if significant_vars[target]|length == 1 %}
+    Key variable that characterize the segment of {{target}} {{dimension_name}} is {{significant_vars[target][0]}}.
+  {% elif significant_vars[target]|length == 2 %}
+    Key variables that characterize the segment of {{target}} {{dimension_name}} are {{significant_vars[target][0]}} and {{significant_vars[target][1]}}.
+  {% elif significant_vars[target]|length > 2 %}
+    Key variables that characterize the segment of {{target}} {{dimension_name}} includes {{significant_vars[target][0]}}, {{significant_vars[target][1]}} and {{significant_vars[target][2]}}.
+  {% endif %}
+  </p>
+  {{blockSplitter}}
+  <p class = "txt-justify">
+  {% if rules[target]|length >= 1 %}
+    <ul>
+      {% for rule in rules[target] %}
+        <li> {{rule}}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </p>
+{% endfor %}

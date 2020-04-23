@@ -1,0 +1,32 @@
+{% if num_variables == 1 %}
+  {% if num_significant_variables == 0 %} There is only <b>one variable</b> in the dataset and it does not have <b>significant association</b> with {{target_dimension}}.
+  {% else %} There is only one variable in the dataset and it has <b>significant association</b> with {{target_dimension}}.
+             significant_variables[0] displays intriguing variation in distribution across {{target_dimension}}.
+  {% endif %}
+{% elif num_variables == 2 %}
+  {% if num_significant_variables == 0 %}
+    There are just <b>two variables</b> and they do not have a <b>significant association</b> with {{target_dimension}}.
+  {% elif num_significant_variables == 1 %}
+    There are just <b>two variables</b> in the dataset and <b>only {{significant_variables[0]}}</b> has a <b>significant association</b> with {{target_dimension}}.
+    It displays intriguing variation in distribution across {{target_dimension}}.
+  {% else %}
+    There are just <b>two variables</b> and <b>both of them</b> ({{significant_variables[0]}} and {{significant_variables[[1]]}}) have <b>significant association</b> with {{target_dimension}}.
+    They display intriguing variation in distribution across {{target_dimension}}.
+  {% endif %}
+{% elif num_variables > 2 %}
+  {% if num_significant_variables == 0 %}
+    There are <b>{{num_variables}} variables</b> and they do not have a <b>significant association</b> with {{target_dimension}}.
+  {% elif num_significant_variables == 1 %}
+    There are <b>{{num_variables}} variables</b> in the dataset and <b>only {{significant_variables[0]}}</b> has a <b>significant association</b> with {{target_dimension}}.
+    It displays intriguing variation in distribution across {{target_dimension}}.
+  {% elif num_significant_variables == 2 %}
+    There are <b>{{num_variables}} variables</b> and <b>two of them</b> ({{significant_variables[0]}} and {{significant_variables[[1]]}}) have <b>significant association</b> with {{target_dimension}}.
+    They display intriguing variation in distribution across {{target_dimension}}.
+  {% elif num_significant_variables == 3 %}
+    There are <b>{{num_variables}} variables</b> and <b>three of them</b> ({{significant_variables[0]}}, {{significant_variables[[1]]}} and {{significant_variables[2]}}) have <b>significant association</b> with {{target_dimension}}.
+    They display intriguing variation in distribution across {{target_dimension}}.
+  {% else  %}
+    There are <b>{{num_variables}} variables</b> and <b>{{num_significant_variables}} of them</b> (including {{significant_variables[0]}}, {{significant_variables[1]}}, etc..) have <b>significant association</b> with {{target_dimension}}.
+    They display intriguing variation in distribution across {{target_dimension}}.
+  {% endif %}
+{% endif %}

@@ -1,0 +1,18 @@
+{% if num_bins > 3 %}
+  {% if seventy_five <= 30 %}
+    {% if skew > 0 %} {{c_col_name}} displays highly significant concentration around few categories ({{start}} to {{end}}) and show high focus on or penetration into high-value {{col_name}} observations.
+    {% elif skew == 0 %} {{c_col_name}} displays highly significant concentration around few categories ({{start}} to {{end}}) and a relatively diversified mix of high-value and low-value {{col_name}} observations.
+    {% else %} {{c_col_name}} displays highly significant concentration around few categories ({{start}} to {{end}}) and show lack of focus on or penetration into high-value {{col_name}} observations.
+    {% endif %}
+  {% elif seventy_five > 60 %}
+     {% if skew > 0 %} {{c_col_name}} seems to be spread across many categories ({{start}} to {{end}}) and show high focus on or penetration into high-value {{col_name}} observations.
+     {% elif skew < 0 %} {{c_col_name}} seems to be spread across many categories ({{start}}> to {{end}}) and show lack of focus on or penetration into high-value {{col_name}} observations.
+     {% else %} {{c_col_name}} seems to be spread across many categories ({{start}} to {{end}}) and a relatively diversified mix of high-value and low-value {{col_name}} observations.
+     {% endif %}
+  {% else %}
+     {% if skew > 0 %} {{c_col_name}} displays moderately significant concentration around some categories ({{start}} to {{end}}) and show high focus on or penetration into high-value {{col_name}} observations.
+     {% elif skew < 0 %} {{c_col_name}} displays moderately significant concentration around few categories ({{start}} to {{end}}) and show lack of focus on or penetration into high-value {{col_name}} observations.
+     {% else %} {{c_col_name}} displays moderately significant concentration around few categories ({{start}} to {{end}}) and a relatively diversified mix of high-value and low-value {{col_name}} observations.
+     {% endif %}
+  {% endif %}
+{% endif %}

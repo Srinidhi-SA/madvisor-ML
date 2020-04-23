@@ -1,0 +1,36 @@
+<p class="txt-justify">
+{% if num_significant_variables>=1 %}
+  {% if num_variables == 1 %}
+    {{analysed_dimension[0]}} is the only factor in the dataset and it has significant association with {{target}}.
+  {% elif num_significant_variables == 1 %}
+    There are <b>{{num_variables}} Factors </b> in the dataset and only {{significant_variables[0]}} has
+    <b>significant association</b> with {{target}}.
+  {% elif num_variables != num_significant_variables %}
+    There are <b>{{num_variables}} factors</b> in the dataset and <b> {{num_significant_variables}} of them
+    </b> (including {{significant_variables[0]}}, {{significant_variables[1]}}) have <b>significant association</b>
+    with {{target}}.
+  {% elif num_variables == num_significant_variables %}
+    There are <b>{{num_variables}} factors</b> in the dataset and <b> all of them </b>  have <b>significant
+    association</b> with {{target}}.
+  {% endif %}
+{% else %}
+  {% if num_variables == 1 %}
+    {{analysed_dimension[0]}} is the only factor in the dataset and it doesn't have significant association with {{target}}.
+  {% else %}
+    There are <b>{{num_variables}} Factors</b> in the dataset and <b>None of them</b> have significant influence on {{target}}.
+  {% endif %}
+{% endif %}
+
+{% if num_significant_variables == 1 %}
+  It implies that specific categories within {{significant_variables[0]}} show <b>considerable amount of variation </b>
+  in distribution of {{target}} categories.
+  The chart below displays the <b> impact of {{significant_variables[0]}}</b> on {{target}}, as measured by effect size.
+{% elif num_significant_variables>1 %}
+  It implies that specific categories within each of the dimensions show <b>considerable amount of variation </b>
+  in distribution of {{target}} categories.
+  The chart below displays the<b> impact of key dimensions </b> on {{target}}, as measured by effect size.
+{% endif %}
+{% if num_significant_variables >= 1%}
+  Let us take a deeper look at some of the most important relationships.
+{% endif %}
+</p>

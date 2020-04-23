@@ -1,0 +1,12 @@
+<p class="txt-justify">
+The <b>decision tree diagram</b> helps us identify the key variables that explains categorization of {{dimension_name}}.
+It showcases the <b>key variable</b> and how it influences classification of observations into specific {{dimension_name}}.
+{% if significant_vars_list|length == 2%}
+  There are two variables ({{significant_vars_list[0]}} and {{significant_vars_list[1]}}) that help us predict {{dimension_name}}.
+{% elif significant_vars_list|length == 3 %}
+  There are three variables ({{significant_vars_list[0]}}, {{significant_vars_list[1]}} and {{significant_vars_list[2]}}) that help us predict {{dimension_name}}.
+{% elif significant_vars_list|length > 3 %}
+  There are <b>{{significant_vars_list|length}} variables</b> that help us predict {{dimension_name}}
+  and the most significant among them are <b>{{significant_vars_list[0]}}, {{significant_vars_list[1]}} and {{significant_vars_list[2]}}</b>.
+{% endif %}
+</p>
