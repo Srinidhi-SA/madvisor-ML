@@ -71,34 +71,34 @@ COPY marlabs_bi_jobs-0.0.0-py3.6.egg .
 RUN ls -l  /home/mAdvisor/mAdvisor-api/scripts
 WORKDIR /home/mAdvisor/mAdvisor-api
 RUN chmod +x $SPARK_HOME/startup.sh && chmod +x /home/mAdvisor/mAdvisor-api/scripts/marlabs_bi_jobs-0.0.0-py3.6.egg
-#EXPOSE 8080 4040 6379
-#WORKDIR /home/mAdvisor/mAdvisor-api/
-#RUN mkdir server_log
-#COPY lock.sh /home/mAdvisor/mAdvisor-api/
-#COPY hadoop_conf/ /home/mAdvisor/mAdvisor-api/hadoop_conf/
-#RUN chmod +x /home/mAdvisor/mAdvisor-api/lock.sh
+EXPOSE 8080 4040 6379
+WORKDIR /home/mAdvisor/mAdvisor-api/
+RUN mkdir server_log
+COPY lock.sh /home/mAdvisor/mAdvisor-api/
+COPY hadoop_conf/ /home/mAdvisor/mAdvisor-api/hadoop_conf/
+RUN chmod +x /home/mAdvisor/mAdvisor-api/lock.sh
 
 #RUN chown marlabs:marlabs /home/mAdvisor/mAdvisor-api
 #RUN chown marlabs:marlabs /usr/local/spark-2.3.0-bin-hadoop2.7/startup.sh
 #RUN chown marlabs:marlabs /home/mAdvisor/mAdvisor-api/server_log
-#RUN mkdir /usr/local/spark-2.4.0-bin-hadoop2.7//logs
+RUN mkdir /usr/local/spark-2.4.0-bin-hadoop2.7//logs
 #RUN chown marlabs:marlabs /usr/local/spark-2.3.0-bin-hadoop2.7//logs
-#RUN mv /usr/local/spark-2.4.0-bin-hadoop2.7/conf/spark-defaults.conf.template /usr/local/spark-2.4.0-bin-hadoop2.7/conf/spark-defaults.conf
+RUN mv /usr/local/spark-2.4.0-bin-hadoop2.7/conf/spark-defaults.conf.template /usr/local/spark-2.4.0-bin-hadoop2.7/conf/spark-defaults.conf
 #RUN chown marlabs:marlabs /usr/local/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
 #RUN chown marlabs:marlabs /home/mAdvisor/mAdvisor-api/scripts
 #RUN chown marlabs:marlabs $HADOOP_CONF_DIR
 #RUN mkdir /home/marlabs/ && mkdir /home/marlabs/nltk_data && chown marlabs:marlabs /home/marlabs/nltk_data
 #RUN chown marlabs:marlabs /tmp
-#RUN pip3 install -U scikit-learn 
+RUN pip3 install -U scikit-learn 
 #fabric==1.14.1
-#RUN pip install fabric3
-#RUN apt-get install curl -y
-#RUN apt-get install python3-tk -y
-#RUN pip3 install scipy==1.2.3
-#COPY celery_reload.sh /home/mAdvisor/mAdvisor-api/
-#RUN chmod +x /home/mAdvisor/mAdvisor-api/celery_reload.sh
-#RUN pip3 install json2xml
-#RUN pip3 install Shapely
-#RUN apt-get -y install poppler-utils && apt-get clean
+RUN pip install fabric3
+RUN apt-get install curl -y
+RUN apt-get install python3-tk -y
+RUN pip3 install scipy==1.2.3
+COPY celery_reload.sh /home/mAdvisor/mAdvisor-api/
+RUN chmod +x /home/mAdvisor/mAdvisor-api/celery_reload.sh
+RUN pip3 install json2xml
+RUN pip3 install Shapely
+RUN apt-get -y install poppler-utils && apt-get clean
 #USER marlabs
-#ENTRYPOINT ["/usr/local/spark-2.4.0-bin-hadoop2.7/startup.sh"]
+ENTRYPOINT ["/usr/local/spark-2.4.0-bin-hadoop2.7/startup.sh"]
