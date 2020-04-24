@@ -19,7 +19,7 @@ RUN apt-get install -y python3-pip python3-dev \
 RUN mkdir /home/mAdvisor/
 WORKDIR /home/mAdvisor/
 ADD requirements.tgz /home/mAdvisor/
-RUN gunzip -c /home/mAdvisor/requirements.tgz
+RUN tar xvf /home/mAdvisor/requirements.tgz
 RUN ls -la /home/mAdvisor
 #RUN virtualenv --python=python3 myenv
 #RUN . myenv/bin/activate && 
