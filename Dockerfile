@@ -19,6 +19,7 @@ RUN apt-get install -y python3-pip python3-dev \
 RUN mkdir /home/mAdvisor/
 WORKDIR /home/mAdvisor/
 ADD requirements.tgz /home/mAdvisor/
+RUN ls -l /home/mAdvisor
 #RUN virtualenv --python=python3 myenv
 #RUN . myenv/bin/activate && 
 RUN pip3 install pywebhdfs==0.4.1
@@ -39,6 +40,8 @@ ENV LANGUAGE en_US.UTF-8
 
 RUN apt-get install libmysqlclient-dev postgresql-server-dev-all -y
 #RUN . myenv/bin/activate &&
+#WORKDIR /home/mAdvisor/
+RUN echo $PWD
 RUN pip3 install -U setuptools
 RUN pip3 install pyspark==2.4.0
 RUN pip3 install pyenchant && pip3 install sklearn2pmml && pip3 install -r requirements.txt
