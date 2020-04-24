@@ -1,0 +1,7 @@
+-r common.txt
+-r mlscripts.txt
+
+django-extensions==1.8.1
+django-debug-toolbar==1.8
+django-cprofile-middleware==1.0
+django-silk==1.0.0

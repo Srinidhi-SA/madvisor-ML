@@ -18,8 +18,9 @@ RUN apt-get install -y python3-pip python3-dev \
 #adding madvisor code 
 RUN mkdir /home/mAdvisor/
 WORKDIR /home/mAdvisor/
-ADD requirements.tgz /home/mAdvisor/
-RUN tar xvf /home/mAdvisor/requirements.tgz
+ADD requirements /home/mAdvisor/
+ADD requirements.txt /home/mAdvisor
+#RUN tar xvf /home/mAdvisor/requirements.tgz
 RUN ls -la /home/mAdvisor
 #RUN virtualenv --python=python3 myenv
 #RUN . myenv/bin/activate && 
