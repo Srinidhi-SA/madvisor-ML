@@ -21,7 +21,6 @@ WORKDIR /home/mAdvisor/
 ADD requirements /home/mAdvisor/
 ADD requirements.txt /home/mAdvisor
 #RUN tar xvf /home/mAdvisor/requirements.tgz
-RUN ls -la /home/mAdvisor
 #RUN virtualenv --python=python3 myenv
 #RUN . myenv/bin/activate && 
 RUN pip3 install pywebhdfs==0.4.1
@@ -48,7 +47,6 @@ RUN pip3 install pyenchant && pip3 install sklearn2pmml && pip3 install -r requi
 
 #copy api code
 ADD code.tgz /home/mAdvisor
-RUN ls -al /home/mAdvisor
 WORKDIR /home/mAdvisor/mAdvisor-api/
 RUN mkdir hadoop_conf/
 ENV HADOOP_CONF_DIR=/home/mAdvisor/mAdvisor-api/hadoop_conf/
@@ -72,7 +70,6 @@ COPY startup.sh $SPARK_HOME/
 RUN apt-get install docker.io -y 
 WORKDIR /home/mAdvisor/mAdvisor-api/scripts
 COPY marlabs_bi_jobs-0.0.0-py3.6.egg .
-RUN ls -l  /home/mAdvisor/mAdvisor-api/scripts
 WORKDIR /home/mAdvisor/mAdvisor-api
 RUN chmod +x $SPARK_HOME/startup.sh && chmod +x /home/mAdvisor/mAdvisor-api/scripts/marlabs_bi_jobs-0.0.0-py3.6.egg
 EXPOSE 8080 4040 6379
