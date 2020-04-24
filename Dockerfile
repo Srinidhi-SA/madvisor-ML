@@ -19,7 +19,7 @@ RUN apt-get install -y python3-pip python3-dev \
 RUN mkdir /home/mAdvisor/
 WORKDIR /home/mAdvisor/
 ADD requirements.tgz /home/mAdvisor/
-RUN ls -l /home/mAdvisor
+RUN ls -la /home/mAdvisor
 #RUN virtualenv --python=python3 myenv
 #RUN . myenv/bin/activate && 
 RUN pip3 install pywebhdfs==0.4.1
@@ -48,7 +48,7 @@ RUN pip3 install pyenchant && pip3 install sklearn2pmml && pip3 install -r requi
 
 #copy api code
 ADD code.tgz /home/mAdvisor
-RUN ls -l /home/mAdvisor
+RUN ls -al /home/mAdvisor
 WORKDIR /home/mAdvisor/mAdvisor-api/
 RUN mkdir hadoop_conf/
 ENV HADOOP_CONF_DIR=/home/mAdvisor/mAdvisor-api/hadoop_conf/
