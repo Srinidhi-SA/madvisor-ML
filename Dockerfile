@@ -48,6 +48,7 @@ RUN pip3 install pyenchant && pip3 install sklearn2pmml && pip3 install -r requi
 
 #copy api code
 ADD code.tgz /home/mAdvisor
+RUN ls -l /home/mAdvisor
 WORKDIR /home/mAdvisor/mAdvisor-api/
 RUN mkdir hadoop_conf/
 ENV HADOOP_CONF_DIR=/home/mAdvisor/mAdvisor-api/hadoop_conf/
