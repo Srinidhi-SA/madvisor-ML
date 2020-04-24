@@ -40,7 +40,7 @@ ENV LANGUAGE en_US.UTF-8
 
 RUN apt-get install libmysqlclient-dev postgresql-server-dev-all -y
 #RUN . myenv/bin/activate &&
-#WORKDIR /home/mAdvisor/
+WORKDIR /home/mAdvisor/
 RUN echo $PWD
 RUN pip3 install -U setuptools
 RUN pip3 install pyspark==2.4.0
