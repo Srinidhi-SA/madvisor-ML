@@ -79,6 +79,7 @@ COPY lock.sh /home/mAdvisor/mAdvisor-api/
 COPY hadoop_conf/ /home/mAdvisor/mAdvisor-api/hadoop_conf/
 RUN chmod +x /home/mAdvisor/mAdvisor-api/lock.sh
 
+
 #RUN chown marlabs:marlabs /home/mAdvisor/mAdvisor-api
 #RUN chown marlabs:marlabs /usr/local/spark-2.3.0-bin-hadoop2.7/startup.sh
 #RUN chown marlabs:marlabs /home/mAdvisor/mAdvisor-api/server_log
