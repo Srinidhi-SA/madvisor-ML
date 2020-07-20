@@ -25,8 +25,7 @@ curl --data-binary @dist/marlabs_bi_jobs-0.0.0-py2.7.egg -H 'Content-Type: appli
         * Generate coverage reports
 
 
-
-## Submitting spark jobs to cluster
+### Submitting spark jobs to cluster
     ```
     $ spark-submit --master {spark-url} {pyspark-script} --arg1-name arg1 --arg2-name arg2 ....
 
