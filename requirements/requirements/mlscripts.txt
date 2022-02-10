@@ -39,7 +39,7 @@ spark-sklearn==0.3.0
 scikit-spark==0.1.0
 numexpr==2.6.1
 pydotplus
-tensorflow==2.0.0
+tensorflow==2.5.3
 pint
 validate_email
 holidays
