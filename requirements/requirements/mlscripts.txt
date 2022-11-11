@@ -17,7 +17,7 @@ humanize==0.5.1
 pyhocon==0.3.51
 #sklearn
 setuptools==39.1.0
-pyspark==2.4.0
+pyspark==3.2.2
 #cryptography==2.6.1
 #packaging==19.0
 chain==1.0
