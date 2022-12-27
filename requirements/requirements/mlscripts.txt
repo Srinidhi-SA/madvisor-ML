@@ -16,7 +16,7 @@ python-dateutil==2.8.0
 humanize==0.5.1
 pyhocon==0.3.51
 #sklearn
-setuptools==39.1.0
+setuptools==65.5.1
 pyspark==2.4.0
 #cryptography==2.6.1
 #packaging==19.0
